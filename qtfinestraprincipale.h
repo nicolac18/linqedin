@@ -2,12 +2,16 @@
 #define QTFINESTRAPRINCIPALE_H
 
 #include "databaselinqedin.h"
-#include "qtfinestralogin.h"
+#include "linqedinamministratore.h"
+#include "linqedinutente.h"
+#include "qtfinestraamministratore.h"
 #include "qtfinestraregistrazione.h"
+#include "qtfinestrautente.h"
 
 #include <QDialog>
 #include <QGroupBox>
 #include <QLabel>
+#include <QLineEdit>
 #include <QPushButton>
 #include <QString>
 #include <QVBoxLayout>
@@ -19,7 +23,7 @@ private:
    DatabaseLinQedIn* db;
 
 public:
-   explicit QtFinestraPrincipale(QDialog* parent= 0);
+   explicit QtFinestraPrincipale(DatabaseLinQedIn, QDialog* parent= 0);
 
    QVBoxLayout* layout;
 
@@ -31,16 +35,20 @@ public:
    QVBoxLayout* layoutAmministratore;
    QGroupBox* gBoxAmministratore;
 
-   QPushButton* buttonRegistrati;
+   QLineEdit* lineEditNomeUtente;
    QPushButton* buttonAccedi;
+
+   QPushButton* buttonRegistrati;
+
    QPushButton* buttonAmministratore;
+
    QPushButton* buttonEsci;
 
 signals:
 
 public slots:
-   void apriQtFinestraLoginUtente();
-   void apriQtFinestraLoginAmministratore();
+   void apriQtFinestraUtente();
+   void apriQtFinestraAmministratore();
    void apriQtFinestraRegistrazione();
    void esci();
 

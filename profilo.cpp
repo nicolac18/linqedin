@@ -100,7 +100,7 @@ vector<TitoloDiStudio>& Profilo::getTitoloDiStudio() const {
 }
 
 TitoloDiStudio& Profilo::getTitoloDiStudio(int i) const {
-   return const_cast<TitoloDiStudio&>(tDiStudio.at(i));
+   return const_cast<TitoloDiStudio&>(tDiStudio[i]);
 }
 
 vector<Lingua>& Profilo::getLingua() const {
@@ -126,6 +126,33 @@ vector<EsperienzaProfessionale>& Profilo::getEsperienzaProfessionale() const {
 EsperienzaProfessionale& Profilo::getEsperienzaProfessionale(int i) const {
   return const_cast<EsperienzaProfessionale&>(expProfessionali.at(i));
 }
+
+
+// metodi writer
+void Profilo::scriviTitoliDiStudio(QXmlStreamWriter& stream) const {
+   vector<TitoloDiStudio>::const_iterator it;
+   for (it= tDiStudio.begin(); it!=tDiStudio.end(); ++it)
+      (*it).scrivi(stream);
+}
+
+void Profilo::scriviLingue(QXmlStreamWriter& stream) const {
+   vector<Lingua>::const_iterator it;
+   for (it= lingue.begin(); it!=lingue.end(); ++it)
+      (*it).scrivi(stream);
+}
+
+void Profilo::scriviCompetenze(QXmlStreamWriter& stream) const {
+   vector<Competenza>::const_iterator it;
+   for (it= competenze.begin(); it!=competenze.end(); ++it)
+      (*it).scrivi(stream);
+}
+
+void Profilo::scriviEsperienzeProfessionali(QXmlStreamWriter& stream) const {
+   vector<EsperienzaProfessionale>::const_iterator it;
+   for (it= expProfessionali.begin(); it!=expProfessionali.end(); ++it)
+      (*it).scrivi(stream);
+}
+
 
 //vector<string> Profilo::getInfo() const {
 //   vector<string> tmp;

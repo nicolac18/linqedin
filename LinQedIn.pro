@@ -10,16 +10,15 @@ SOURCES += \
     utenteexecutive.cpp \
     idutente.cpp \
     linqedinamministratore.cpp \
-    iodatabase.cpp \
     linqedinutente.cpp \
     qtfinestraprincipale.cpp \
-    qtfinestralogin.cpp \
     qtfinestraamministratore.cpp \
     qtfinestrautente.cpp \
     qtfinestraregistrazione.cpp \
     lingua.cpp \
     competenza.cpp \
-    contatto.cpp
+    contatto.cpp \
+    iodatabase.cpp
 
 HEADERS += \
     utente.h \
@@ -32,16 +31,15 @@ HEADERS += \
     utenteexecutive.h \
     idutente.h \
     linqedinamministratore.h \
-    iodatabase.h \
     linqedinutente.h \
     qtfinestraprincipale.h \
-    qtfinestralogin.h \
     qtfinestraamministratore.h \
     qtfinestrautente.h \
     qtfinestraregistrazione.h \
     lingua.h \
     competenza.h \
-    contatto.h
+    contatto.h \
+    iodatabase.h
 
 QT += \
     core \

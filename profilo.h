@@ -4,6 +4,7 @@
 #include <iostream>
 #include <QDate>
 #include <vector>
+#include <QXmlStreamWriter>
 
 #include "competenza.h"
 #include "esperienzaprofessionale.h"
@@ -66,12 +67,20 @@ public:
 
    vector<Lingua>& getLingua() const;
    Lingua& getLingua(int) const;
+   Lingua& getL(int);
 
    vector<Competenza>& getCompetenza() const;
    Competenza& getCompetenza(int) const;
 
    vector<EsperienzaProfessionale>& getEsperienzaProfessionale() const;
    EsperienzaProfessionale& getEsperienzaProfessionale(int) const;
+
+
+   // metodi writer
+   void scriviTitoliDiStudio(QXmlStreamWriter&) const;
+   void scriviLingue(QXmlStreamWriter&) const;
+   void scriviCompetenze(QXmlStreamWriter&) const;
+   void scriviEsperienzeProfessionali(QXmlStreamWriter&) const;
 
 
 //   vector<string> getInfo() const;

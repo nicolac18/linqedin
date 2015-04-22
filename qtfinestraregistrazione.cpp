@@ -16,8 +16,9 @@ QtFinestraRegistrazione::QtFinestraRegistrazione(DatabaseLinQedIn* d, QDialog *p
    lineEditCognome= new QLineEdit(this);
 
    labelDataDiNascita= new QLabel(QString("Data di nascita:"),this);
-   lineEditDataDiNascita= new QLineEdit(this);
-   lineEditDataDiNascita->setInputMask(QString("99-99-9999"));
+   dateEditDataDiNascita= new QDateEdit(this);
+   dateEditDataDiNascita->setDisplayFormat("dd.MM.yyyy");
+   dateEditDataDiNascita->setMinimumDate(QDate(1,1,1900)); dateEditDataDiNascita->setMaximumDate(QDate(1,1,2015));
 
    labelTipoUtente= new QLabel(QString("Tipo utente:"),this);
    comboBoxTipoUtente= new QComboBox(this);
@@ -38,7 +39,7 @@ QtFinestraRegistrazione::QtFinestraRegistrazione(DatabaseLinQedIn* d, QDialog *p
    layout->addWidget(lineEditCognome, 3, 1);
 
    layout->addWidget(labelDataDiNascita, 4, 0);
-   layout->addWidget(lineEditDataDiNascita, 4, 1);
+   layout->addWidget(dateEditDataDiNascita, 4, 1);
 
    layout->addWidget(labelTipoUtente, 5, 0);
    layout->addWidget(comboBoxTipoUtente, 5, 1);
@@ -59,21 +60,21 @@ void QtFinestraRegistrazione::registrazione() {
 
    IdUtente tmpI(lineEditEmail->text().toStdString());
    Profilo tmpP(lineEditNome->text().toStdString(),lineEditCognome->text().toStdString(),
-                QDate::fromString(lineEditDataDiNascita->text(), QString("dd-MM-yyyy")));
+                  QDate::fromString(dateEditDataDiNascita->text(), "dd.MM.yyyy"));
 
    bool inserito;
    if (comboBoxTipoUtente->currentIndex()== 0) {
-      UtenteBasic tmpU(tmpI,tmpP);
-      inserito= db->inserisciUtente(tmpU);
+//      UtenteBasic tmpU(tmpI,tmpP);
+      inserito= db->inserisciUtente(new UtenteBasic(tmpI, tmpP));
    }
    else if (comboBoxTipoUtente->currentIndex()== 1) {
-      UtenteBusiness tmpU(tmpI,tmpP);
-      inserito= db->inserisciUtente(tmpU);
+//      UtenteBusiness tmpU(tmpI,tmpP);
+      inserito= db->inserisciUtente(new UtenteBusiness(tmpI, tmpP));
    }
 
    else if (comboBoxTipoUtente->currentIndex()== 2) {
-      UtenteExecutive tmpU(tmpI,tmpP);
-      inserito= db->inserisciUtente(tmpU);
+//      UtenteExecutive tmpU(tmpI,tmpP);
+      inserito= db->inserisciUtente(new UtenteExecutive(tmpI, tmpP));
    }
 
    else

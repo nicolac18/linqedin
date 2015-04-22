@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class DatabaseLinQedIn;
+//class DatabaseLinQedIn;
 
 class IODatabase {
 private:
@@ -21,8 +21,8 @@ public:
    IODatabase();
    ~IODatabase();
 
-   static void loadDatabase(string, DatabaseLinQedIn&);
-   static void saveDatabase(DatabaseLinQedIn&, string);
+   static void loadDatabase(string, DatabaseLinQedIn*);
+   static void saveDatabase(DatabaseLinQedIn*, string);
 
 };
 

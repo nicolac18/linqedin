@@ -9,6 +9,8 @@ public:
    ~UtenteExecutive();
 
    void ricerca(DatabaseLinQedIn&, string, QList<QString>&);
+
+   void scrivi(QXmlStreamWriter&) const;
 };
 
 #endif // UTENTEEXECUTIVE_H

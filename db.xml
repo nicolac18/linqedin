@@ -1,2 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<DatabaseLinQedIn/>
+<DatabaseLinQedIn>
+    <utente tipo="business">
+        <email>edoardo.carraro.16@gmail.com</email>
+        <nome>Edoardo</nome>
+        <cognome>Carraro</cognome>
+        <datadinascita>2001.07.16</datadinascita>
+        <emailsecondaria></emailsecondaria>
+        <rete/>
+    </utente>
+    <utente tipo="basic">
+        <email>antolauri@alice.it</email>
+        <nome>Laurenzio</nome>
+        <cognome>Carraro</cognome>
+        <datadinascita>1961.07.24</datadinascita>
+        <emailsecondaria></emailsecondaria>
+        <rete/>
+    </utente>
+    <utente tipo="basic">
+        <email>nicola.carraro.18@gmail.com</email>
+        <nome>Nicola</nome>
+        <cognome>Carraro</cognome>
+        <datadinascita>1991.09.18</datadinascita>
+        <emailsecondaria></emailsecondaria>
+        <titolo di studio/>
+        <titolo>info</titolo>
+        <specializzazione>perito tecnico informatico</specializzazione>
+        <lingua>italiano</lingua>
+        <lingua>inglese</lingua>
+        <competenza>C++</competenza>
+        <esperienzaprofessionale/>
+        <dal>1980.06.01</dal>
+        <al>2010.09.30</al>
+        <descrizione>musei civici</descrizione>
+        <rete/>
+    </utente>
+</DatabaseLinQedIn>

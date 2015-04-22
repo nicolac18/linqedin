@@ -13,13 +13,13 @@ void LinQedInAmministratore::inserisciUtente(int tipo, string email, string nome
 
    switch (tipo) {
    case 1:
-      db->inserisciUtente(UtenteBasic(id1,p1));
+      db->inserisciUtente(new UtenteBasic(id1,p1));
       break;
    case 2:
-      db->inserisciUtente(UtenteBusiness(id1,p1));
+      db->inserisciUtente(new UtenteBusiness(id1,p1));
       break;
    case 3:
-      db->inserisciUtente(UtenteExecutive(id1,p1));
+      db->inserisciUtente(new UtenteExecutive(id1,p1));
       break;
    default:
       return;
@@ -28,51 +28,49 @@ void LinQedInAmministratore::inserisciUtente(int tipo, string email, string nome
 
 // rimuovi utente
 void LinQedInAmministratore::rimuoviUtente(string e) {
-   Utente* u= &(*db->cercaUtente(e));
+   Utente* u= *db->cercaUtente(e);
    if (u)
       db->rimuoviUtente(u->getId());
 }
 
 // rimuovi utente
 void LinQedInAmministratore::rimuoviUtente(string n, string c) {
-   Utente* u= &(*db->cercaUtente(n, c));
+   Utente* u= *db->cercaUtente(n, c);
    if (u)
       db->rimuoviUtente(u->getId());
 }
 
 // cerca utente
-Utente& LinQedInAmministratore::cercaUtente(string e) {
-   DatabaseLinQedIn::Iteratore it= db->cercaUtente(e);
-   return *it;
+DatabaseLinQedIn::Iteratore LinQedInAmministratore::cercaUtente(string e) {
+   return db->cercaUtente(e);
 }
 
 // cerca utente
-Utente& LinQedInAmministratore::cercaUtente(string n, string c) {
-   DatabaseLinQedIn::Iteratore it= db->cercaUtente(n, c);
-   return *it;
+DatabaseLinQedIn::Iteratore LinQedInAmministratore::cercaUtente(string n, string c) {
+   return db->cercaUtente(n, c);
 }
 
 void LinQedInAmministratore::cambiaTipoUtente(string e, int tipo) {
-   Utente* u= &(*db->cercaUtente(e));
+   Utente* u= *db->cercaUtente(e);
    if (u) {
       if (tipo== 0) {
          UtenteBasic* tmp= static_cast<UtenteBasic*>(u);
          db->rimuoviUtente(u->getId());
-         db->inserisciUtente(UtenteBasic(*tmp));
+         db->inserisciUtente(new UtenteBasic(*tmp));
          return;
       }
 
       else if (tipo== 1) {
          UtenteBusiness* tmp= static_cast<UtenteBusiness*>(u);
          db->rimuoviUtente(u->getId());
-         db->inserisciUtente(UtenteBusiness(*tmp));
+         db->inserisciUtente(new UtenteBusiness(*tmp));
          return;
       }
 
       else if (tipo== 2) {
          UtenteExecutive* tmp= static_cast<UtenteExecutive*>(u);
          db-> rimuoviUtente(u->getId());
-         db->inserisciUtente(UtenteExecutive(*tmp));
+         db->inserisciUtente(new UtenteExecutive(*tmp));
          return;
       }
    }

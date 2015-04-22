@@ -1,6 +1,6 @@
 #include "databaselinqedin.h"
 
-// definizioni classe Iteratore
+// ##### definizioni classe Iteratore
 // operatore uguaglianza
 bool DatabaseLinQedIn::Iteratore::operator==(const Iteratore& i) const {
    return idi== i.idi;
@@ -27,12 +27,12 @@ DatabaseLinQedIn::Iteratore& DatabaseLinQedIn::Iteratore::operator++(int) {
 }
 
 // operatore di dereferenziazione
-Utente& DatabaseLinQedIn::Iteratore::operator*() const {
+Utente* DatabaseLinQedIn::Iteratore::operator*() const {
    return idi->info;
 }
 
 
-// definizioni classe DatabaseLinQedIn
+// ##### definizioni classe DatabaseLinQedIn
 // costruttore
 DatabaseLinQedIn::DatabaseLinQedIn(): primo(0) {}
 
@@ -67,9 +67,9 @@ bool DatabaseLinQedIn::isEmpty() const {
 }
 
 // inserimento utente
-bool DatabaseLinQedIn::inserisciUtente(Utente u) {
-   if (cercaUtente(u.getId())== this->end()) {  // ==> no duplicati
-      primo= new DatabaseItem(u, primo);
+bool DatabaseLinQedIn::inserisciUtente(Utente* u) {
+   if (cercaUtente(u->getId())== this->end()) {  // ==> no duplicati
+      primo= new DatabaseItem(*u, primo);
       return true;
    }
    return false;
@@ -78,13 +78,13 @@ bool DatabaseLinQedIn::inserisciUtente(Utente u) {
 // rimozione utente
 bool DatabaseLinQedIn::rimuoviUtente(string id) {
    Iteratore it= this->begin(), itPrec= this->begin();
-   if (it.idi->info.getId()== id) {   // primo elemento
+   if (it.idi->info->getId()== id) {   // primo elemento
       primo= primo->next;
       return true;
    }
    ++it;
    while (it!= this->end()) {    // elementi successivi
-      if (it.idi->info.getId()== id) {
+      if (it.idi->info->getId()== id) {
          itPrec.idi->next= it.idi->next;
          return true;
       }
@@ -98,7 +98,7 @@ bool DatabaseLinQedIn::rimuoviUtente(string id) {
 DatabaseLinQedIn::Iteratore DatabaseLinQedIn::cercaUtente(string id) {
    Iteratore it= this->begin();
    while (it!= this->end()) {
-      if ((*it).getId()== id)
+      if ((*it)->getId()== id)
          return it;
       ++it;
    }
@@ -109,7 +109,7 @@ DatabaseLinQedIn::Iteratore DatabaseLinQedIn::cercaUtente(string id) {
 DatabaseLinQedIn::Iteratore DatabaseLinQedIn::cercaUtente(string n, string c) {
    Iteratore it= this->begin();
    while (it!= this->end()) {
-      if (it.idi->info.getProfilo().getNome()== n && it.idi->info.getProfilo().getCognome()== c) {
+      if (it.idi->info->getProfilo().getNome()== n && it.idi->info->getProfilo().getCognome()== c) {
          return it;
       }
       ++it;
@@ -118,7 +118,7 @@ DatabaseLinQedIn::Iteratore DatabaseLinQedIn::cercaUtente(string n, string c) {
 }
 
 
-// definizioni classe Smartp
+// ##### definizioni classe Smartp
 // costruttore
 DatabaseLinQedIn::Smartp::Smartp(DatabaseItem* p): di(p) {
    if (di)
@@ -177,9 +177,9 @@ bool DatabaseLinQedIn::Smartp::operator!= (const Smartp &s) const {
 }
 
 
-// definizioni classe DatabaseItem
+// ##### definizioni classe DatabaseItem
 // costruttore
-DatabaseLinQedIn::DatabaseItem::DatabaseItem(Utente& i): info(i), riferimenti(0) {}
+DatabaseLinQedIn::DatabaseItem::DatabaseItem(Utente& i): info(&i), riferimenti(0) {}
 
 // costruttore
-DatabaseLinQedIn::DatabaseItem::DatabaseItem(Utente& i, const Smartp& s): info(i), next(s), riferimenti(0) {}
+DatabaseLinQedIn::DatabaseItem::DatabaseItem(Utente& i, const Smartp& s): info(&i), next(s), riferimenti(0) {}

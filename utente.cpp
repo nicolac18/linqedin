@@ -1,6 +1,7 @@
 #include "utente.h"
 
 // definizioni classe RicercaFuntore
+// operator ()
 void Utente::RicercaFuntore::operator() (const Utente* u, QList<QString>& list) const  {
    switch(tipo) {
    case 1:
@@ -110,4 +111,29 @@ Profilo& Utente::getProfilo() const {
 
 vector<Contatto>& Utente::getRete() const {
    return const_cast<vector<Contatto>&>(this->rete);
+}
+
+
+// metodi writer
+void Utente::scrivi(QXmlStreamWriter& stream) const {
+   // scrivi tipo
+
+   // idutente
+   stream.writeTextElement("email", QString::fromStdString(idUtente.getEmail()));
+
+   // profilo
+   stream.writeTextElement("nome", QString::fromStdString(profilo.getNome()));
+   stream.writeTextElement("cognome", QString::fromStdString(profilo.getCognome()));
+   stream.writeTextElement("datadinascita", profilo.getDataDiNascita().toString("yyyy.MM.dd"));
+   stream.writeTextElement("emailsecondaria", QString::fromStdString(profilo.getEmailSecondaria()));
+
+   profilo.scriviTitoliDiStudio(stream);
+   profilo.scriviLingue(stream);
+   profilo.scriviCompetenze(stream);
+   profilo.scriviEsperienzeProfessionali(stream);
+
+   stream.writeEmptyElement("rete");
+   vector<Contatto>::const_iterator it;
+   for (it= rete.begin(); it!= rete.end(); ++it)
+      stream.writeTextElement("contatto", QString::fromStdString((*it).getContatto()));
 }

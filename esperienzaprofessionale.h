@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <QDate>
+#include <QXmlStreamWriter>
 
 using namespace std;
 
@@ -18,6 +19,9 @@ public:
    string getDal() const;
    string getAl() const;
    string getDescrizione() const;
+
+   // metodi writer
+   void scrivi(QXmlStreamWriter&) const;
 };
 
 #endif // ESPERIENZAPROFESSIONALE_H

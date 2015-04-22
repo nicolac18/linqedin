@@ -11,13 +11,15 @@
 #include <QGridLayout>
 #include <QGroupBox>
 #include <QFileDialog>
-#include <QHBoxLayout>
+//#include <QHBoxLayout>
 #include <QLabel>
+#include <QListWidget>
 #include <QLineEdit>
 #include <QMessageBox>
 #include <QPushButton>
 #include <QString>
-#include <QTextBrowser>
+#include <QStringList>
+//#include <QTextBrowser>
 #include <QToolBox>
 #include <QVBoxLayout>
 
@@ -25,13 +27,13 @@ class QtFinestraAmministratore: public QDialog {
    Q_OBJECT
 
 private:
-//   DatabaseLinQedIn* db;
    LinQedInAmministratore& lAmministratore;
+   void aggiornaLista();
 
 public:
    explicit QtFinestraAmministratore(LinQedInAmministratore&, QWidget* parent= 0);
 
-   QHBoxLayout* layout;
+   QGridLayout* layout;
 
    // groupBox operazioni utente
    QGroupBox* gBoxUtente;
@@ -72,8 +74,8 @@ public:
 
       QPushButton* buttonRimuovi;
 
-      // text browser
-      QTextBrowser* textBrowser;
+      // list widget
+      QListWidget* listWidget;
 
 
    // groupBox operazioni database
@@ -86,6 +88,10 @@ public:
 
 
 signals:
+
+private slots:
+   void inserisciID(QListWidgetItem*);
+   void resetCampi(int);
 
 public slots:
    void apriQtFinestraRegistrazione();

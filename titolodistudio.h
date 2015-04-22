@@ -2,6 +2,7 @@
 #define TITOLODISTUDIO_H
 
 #include <iostream>
+#include <QXmlStreamWriter>
 
 using namespace std;
 
@@ -16,6 +17,9 @@ public:
 
    string getTitolo() const;
    string getSpecializzazione() const;
+
+   // metodi writer
+   void scrivi(QXmlStreamWriter&) const;
 };
 
 #endif // TITOLODISTUDIO_H

@@ -2,12 +2,12 @@
 #define UTENTE_H
 
 #include <iostream>
+#include <QXmlStreamWriter>
 #include <vector>
 
 #include "contatto.h"
 #include "databaselinqedin.h"
 #include "idutente.h"
-//#include "iodatabase.h"
 #include "profilo.h"
 
 using namespace std;
@@ -16,6 +16,7 @@ class DatabaseLinQedIn;
 
 class Utente {
       friend class IODatabase;
+
 private:
    IdUtente idUtente;
    Profilo profilo;
@@ -48,6 +49,9 @@ public:
    IdUtente& getIdUtente() const;
    Profilo& getProfilo() const;
    vector<Contatto>& getRete() const;
+
+   // metodi writer
+   virtual void scrivi(QXmlStreamWriter&) const =0;
 
 };
 

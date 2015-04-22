@@ -4,7 +4,7 @@ IODatabase::IODatabase() {}
 
 IODatabase::~IODatabase() {}
 
-void IODatabase::loadDatabase(string s, DatabaseLinQedIn& db) {
+void IODatabase::loadDatabase(string s, DatabaseLinQedIn* db) {
    QString path= QString::fromStdString(s);
 
    QFile file(path);
@@ -84,25 +84,25 @@ void IODatabase::loadDatabase(string s, DatabaseLinQedIn& db) {
 
                // inserimento utenti
                if (tipo== "basic") {
-                  UtenteBasic ut(id,p);
+                  UtenteBasic* ut= new UtenteBasic(id,p);
                   vector<string>::const_iterator it;
                   for (it= r.begin(); it!= r.end(); ++it)
-                     ut.aggiungiContatto(*it);
-                  db.inserisciUtente(ut);
+                     ut->aggiungiContatto(*it);
+                  db->inserisciUtente(ut);
                }
                else if (tipo== "business") {
-                  UtenteBusiness ut(id, p);
+                  UtenteBusiness* ut= new UtenteBusiness(id, p);
                   vector<string>::const_iterator it;
                   for (it= r.begin(); it!= r.end(); ++it)
-                     ut.aggiungiContatto(*it);
-                  db.inserisciUtente(ut);
+                     ut->aggiungiContatto(*it);
+                  db->inserisciUtente(ut);
                }
                else if (tipo== "executive") {
-                  UtenteExecutive ut(id, p);
+                  UtenteExecutive* ut= new UtenteExecutive(id, p);
                   vector<string>::const_iterator it;
                   for (it= r.begin(); it!= r.end(); ++it)
-                     ut.aggiungiContatto(*it);
-                  db.inserisciUtente(ut);
+                     ut->aggiungiContatto(*it);
+                  db->inserisciUtente(ut);
                }
             }
 
@@ -114,7 +114,7 @@ void IODatabase::loadDatabase(string s, DatabaseLinQedIn& db) {
 }
 
 
-void IODatabase::saveDatabase(DatabaseLinQedIn& db, string s) {
+void IODatabase::saveDatabase(DatabaseLinQedIn* db, string s) {
 
    QString path= QString::fromStdString(s);
 
@@ -133,62 +133,16 @@ void IODatabase::saveDatabase(DatabaseLinQedIn& db, string s) {
    stream.writeStartElement("DatabaseLinQedIn");
 
    DatabaseLinQedIn::Iteratore itDb;
-   for (itDb= db.begin(); itDb!= db.end(); ++itDb) {
+   for (itDb= db->begin(); itDb!= db->end(); ++itDb) {
 
       stream.writeStartElement("utente");
-      Utente* u= &(*itDb);
 
-      // tipo utente
-      if (dynamic_cast<UtenteBasic*>(u))
-         stream.writeAttribute("tipo", "basic");
-      else if (dynamic_cast<UtenteBusiness*>(u))
-         stream.writeAttribute("tipo", "business");
-      else if (dynamic_cast<UtenteExecutive*>(u))
-         stream.writeAttribute("tipo", "executive");
-
-      // idutente
-      stream.writeTextElement("email", QString::fromStdString((*itDb).getId()));
-
-      // profilo
-      stream.writeTextElement("nome", QString::fromStdString((*itDb).getProfilo().getNome()));
-      stream.writeTextElement("cognome", QString::fromStdString((*itDb).getProfilo().getCognome()));
-      stream.writeTextElement("datadinascita", (*itDb).getProfilo().getDataDiNascita().toString("yyyy.MM.dd"));
-      stream.writeTextElement("emailsecondaria", QString::fromStdString((*itDb).getProfilo().getEmailSecondaria()));
-
-      // titolo di studio
-      for (int i=0; i<(int)(*itDb).getProfilo().getTitoloDiStudio().size(); ++i) {
-         stream.writeEmptyElement("titolodistudio");
-         stream.writeTextElement("titolo", QString::fromStdString((*itDb).getProfilo().getTitoloDiStudio(i).getTitolo()));
-         stream.writeTextElement("specializzazione", QString::fromStdString((*itDb).getProfilo().getTitoloDiStudio(i).getSpecializzazione()));
-      }
-
-      // lingua
-      for (int i=0; i<(int)(*itDb).getProfilo().getLingua().size(); ++i) {
-         stream.writeTextElement("lingua", QString::fromStdString((*itDb).getProfilo().getLingua(i).getLingua()));
-      }
-
-      // competenza
-      for (int i=0; i<(int)(*itDb).getProfilo().getCompetenza().size(); ++i) {
-         stream.writeTextElement("competenza", QString::fromStdString((*itDb).getProfilo().getCompetenza(i).getCompetenza()));
-      }
-
-      // esperienza professionale
-      for (int i=0; i<(int)(*itDb).getProfilo().getEsperienzaProfessionale().size(); ++i) {
-         stream.writeEmptyElement("esperienzaprofessionale");
-         stream.writeTextElement("dal", QString::fromStdString((*itDb).getProfilo().getEsperienzaProfessionale(i).getDal()));
-         stream.writeTextElement("al", QString::fromStdString((*itDb).getProfilo().getEsperienzaProfessionale(i).getDal()));
-         stream.writeTextElement("descrizione", QString::fromStdString((*itDb).getProfilo().getEsperienzaProfessionale(i).getDescrizione()));
-      }
-
-      // rete
-      stream.writeEmptyElement("rete");
-      vector<Contatto>::const_iterator it;
-      for (it= (*itDb).getRete().begin(); it!= (*itDb).getRete().end(); ++it) {
-         stream.writeTextElement("contatto", QString::fromStdString((*it).getContatto()));
-      }
+      Utente* u= *itDb;
+      u->scrivi(stream);
 
       stream.writeEndElement();
    }
+
    stream.writeEndElement();
 
    // fine documento xml

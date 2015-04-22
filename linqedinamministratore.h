@@ -21,8 +21,8 @@ public:
    void rimuoviUtente(string);
    void rimuoviUtente(string, string);
 
-   Utente& cercaUtente(string);
-   Utente& cercaUtente(string, string);
+   DatabaseLinQedIn::Iteratore cercaUtente(string);
+   DatabaseLinQedIn::Iteratore cercaUtente(string, string);
 
    void cambiaTipoUtente(string, int);
 

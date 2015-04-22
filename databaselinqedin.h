@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#include "iodatabase.h"
+//#include "iodatabase.h"
 #include "utente.h"
 
 using namespace std;
@@ -11,7 +11,7 @@ using namespace std;
 class Utente;
 
 class DatabaseLinQedIn {
-      friend class Iteratore; friend class IODatabase;
+      friend class Iteratore;// friend class IODatabase;
 private:
    class DatabaseItem;
 
@@ -34,7 +34,7 @@ private:
 
    class DatabaseItem {
    public:
-      Utente& info;
+      Utente* info;
       Smartp next;
       int riferimenti;
 
@@ -61,7 +61,7 @@ public:
       bool operator!=(const Iteratore&) const;
       Iteratore& operator++();
       Iteratore& operator++(int);
-      Utente& operator*() const;
+      Utente* operator*() const;
    };
 
    Iteratore begin() const;
@@ -70,10 +70,13 @@ public:
 
    bool isEmpty() const;
 
-   bool inserisciUtente(Utente);
+   bool inserisciUtente(Utente*);
    bool rimuoviUtente(string);
    Iteratore cercaUtente(string);
    Iteratore cercaUtente(string, string);
+
+//   void loadDatabase(string);
+//   void saveDatabase(string);
 
    // stampa
 };

@@ -4,6 +4,7 @@
 #include "databaselinqedin.h"
 #include "utenteexecutive.h"
 
+#include <QDateEdit>
 #include <QDialog>
 #include <QComboBox>
 #include <QGridLayout>
@@ -34,7 +35,7 @@ public:
    QLineEdit* lineEditCognome;
 
    QLabel* labelDataDiNascita;
-   QLineEdit* lineEditDataDiNascita;
+   QDateEdit* dateEditDataDiNascita;
 
    QLabel* labelTipoUtente;
    QComboBox* comboBoxTipoUtente;

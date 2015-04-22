@@ -1,11 +1,11 @@
 #include "qtfinestraprincipale.h"
 
-QtFinestraPrincipale::QtFinestraPrincipale(QDialog* parent): QDialog(parent) {
-   db= new DatabaseLinQedIn();
+QtFinestraPrincipale::QtFinestraPrincipale(DatabaseLinQedIn d, QDialog* parent): QDialog(parent) {
+   db= new DatabaseLinQedIn(d);
 
    IdUtente id1("nicola.carraro.18@gmail.com");
    Profilo p1("Nicola", "Carraro", QDate(1991, 9, 18));
-   UtenteBasic u1(id1, p1);
+   UtenteBasic* u1= new UtenteBasic(id1, p1);
    db->inserisciUtente(u1);
 
    this->setWindowTitle(QString("LinQedIn"));
@@ -15,24 +15,34 @@ QtFinestraPrincipale::QtFinestraPrincipale(QDialog* parent): QDialog(parent) {
 
    labelTitolo= new QLabel(QString("Benvenuto in LinQedIn!"));
 
-   buttonRegistrati= new QPushButton(QString("Registrati"), this);
+   lineEditNomeUtente= new QLineEdit(this);
+   lineEditNomeUtente->setPlaceholderText(QString("inserisci nome utente o email"));
    buttonAccedi= new QPushButton(QString("Accedi"), this);
+
+   buttonRegistrati= new QPushButton(QString("Registrati"), this);
+
    buttonAmministratore= new QPushButton(QString("Accedi"), this);
 
-   layoutUtente= new QVBoxLayout();
-   layoutUtente->addWidget(buttonRegistrati);
+
+   layoutUtente= new QVBoxLayout();   
+   layoutUtente->addWidget(lineEditNomeUtente);
    layoutUtente->addWidget(buttonAccedi);
+
+   layoutUtente->addSpacing(20);
+   layoutUtente->addWidget(buttonRegistrati);
+
    gBoxUtente= new QGroupBox(QString("Utente"), this);
    gBoxUtente->setLayout(layoutUtente);
 
 
    layoutAmministratore= new QVBoxLayout();
    layoutAmministratore->addWidget(buttonAmministratore);
+
    gBoxAmministratore= new QGroupBox(QString("Amministratore"), this);
    gBoxAmministratore->setLayout(layoutAmministratore);
 
    buttonEsci= new QPushButton(QString("Esci"), this);
-   buttonEsci->setDefault(true);
+//   buttonEsci->setDefault(true);
 
    layout->addWidget(labelTitolo);
    layout->addSpacing(20);
@@ -46,27 +56,41 @@ QtFinestraPrincipale::QtFinestraPrincipale(QDialog* parent): QDialog(parent) {
 
 
    // connect
-   connect (buttonAccedi, SIGNAL(clicked()), this, SLOT(apriQtFinestraLoginUtente()));
+   connect (buttonAccedi, SIGNAL(clicked()), this, SLOT(apriQtFinestraUtente()));
    connect (buttonRegistrati, SIGNAL(clicked()), this, SLOT(apriQtFinestraRegistrazione()));
-   connect (buttonAmministratore, SIGNAL(clicked()), this, SLOT(apriQtFinestraLoginAmministratore()));
+   connect (buttonAmministratore, SIGNAL(clicked()), this, SLOT(apriQtFinestraAmministratore()));
 
    connect (buttonEsci, SIGNAL(clicked()), this, SLOT(esci()));
 }
 
 // public slots
-void QtFinestraPrincipale::apriQtFinestraLoginUtente() {
-   QtFinestraLogin finestraLogin(true, db, this);
-   finestraLogin.exec();
-}
+void QtFinestraPrincipale::apriQtFinestraUtente() {
 
-void QtFinestraPrincipale::apriQtFinestraLoginAmministratore() {
-   QtFinestraLogin finestraLogin(false, db, this);
-   finestraLogin.exec();
+   if (lineEditNomeUtente->text()!= "") {
+      DatabaseLinQedIn::Iteratore it= db->cercaUtente(lineEditNomeUtente->text().toStdString());
+      if (it!= db->end()) {
+         LinQedInUtente lUtente(db,**it);
+         QtFinestraUtente finestraUtente(lUtente, this);
+         finestraUtente.exec();
+      }
+
+      else {
+         QMessageBox messageBox(this);
+         messageBox.setText("Il nome utente inserito non esiste");
+         messageBox.exec();
+      }
+   }
 }
 
 void QtFinestraPrincipale::apriQtFinestraRegistrazione() {
    QtFinestraRegistrazione finestraRegistrazione(db, this);
    finestraRegistrazione.exec();
+}
+
+void QtFinestraPrincipale::apriQtFinestraAmministratore() {
+   LinQedInAmministratore lAmministratore(db);
+   QtFinestraAmministratore finestraAmministratore(lAmministratore, this);
+   finestraAmministratore.exec();
 }
 
 void QtFinestraPrincipale::esci() {

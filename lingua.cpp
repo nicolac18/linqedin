@@ -5,3 +5,9 @@ Lingua::Lingua(string l): lingua(l) {}
 string Lingua::getLingua() const {
    return lingua;
 }
+
+
+// metodi writer
+void Lingua::scrivi(QXmlStreamWriter& stream) const {
+   stream.writeTextElement("lingua", QString::fromStdString(lingua));
+}
