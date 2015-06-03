@@ -15,7 +15,6 @@ string TitoloDiStudio::getSpecializzazione() const {
 
 // metodi writer
 void TitoloDiStudio::scrivi(QXmlStreamWriter& stream) const {
-   stream.writeEmptyElement("titolo di studio");
    stream.writeTextElement("titolo", "info");
    stream.writeTextElement("specializzazione", QString::fromStdString(specializzazione));
 }

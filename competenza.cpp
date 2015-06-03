@@ -8,6 +8,6 @@ string Competenza::getCompetenza() const {
 
 
 // metodi writer
-void Competenza::scrivi(QXmlStreamWriter& stream ) const {
+void Competenza::scrivi(QXmlStreamWriter& stream) const {
    stream.writeTextElement("competenza", QString::fromStdString(competenza));
 }

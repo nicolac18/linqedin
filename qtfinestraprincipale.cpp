@@ -1,12 +1,7 @@
 #include "qtfinestraprincipale.h"
 
-QtFinestraPrincipale::QtFinestraPrincipale(DatabaseLinQedIn d, QDialog* parent): QDialog(parent) {
-   db= new DatabaseLinQedIn(d);
-
-   IdUtente id1("nicola.carraro.18@gmail.com");
-   Profilo p1("Nicola", "Carraro", QDate(1991, 9, 18));
-   UtenteBasic* u1= new UtenteBasic(id1, p1);
-   db->inserisciUtente(u1);
+QtFinestraPrincipale::QtFinestraPrincipale(QDialog* parent): QDialog(parent) {
+   db= new DatabaseLinQedIn();
 
    this->setWindowTitle(QString("LinQedIn"));
    this->setMinimumSize(320, 240);

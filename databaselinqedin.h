@@ -75,9 +75,6 @@ public:
    Iteratore cercaUtente(string);
    Iteratore cercaUtente(string, string);
 
-//   void loadDatabase(string);
-//   void saveDatabase(string);
-
    // stampa
 };
 

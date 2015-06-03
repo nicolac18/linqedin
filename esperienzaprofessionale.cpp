@@ -17,7 +17,6 @@ string EsperienzaProfessionale::getDescrizione() const {
 
 // metodi writer
 void EsperienzaProfessionale::scrivi(QXmlStreamWriter& stream) const {
-   stream.writeEmptyElement("esperienzaprofessionale");
    stream.writeTextElement("dal", dal.toString("yyyy.MM.dd"));
    stream.writeTextElement("al", al.toString("yyyy.MM.dd"));
    stream.writeTextElement("descrizione", QString::fromStdString(descrizione));

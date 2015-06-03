@@ -82,12 +82,6 @@ public:
    void scriviCompetenze(QXmlStreamWriter&) const;
    void scriviEsperienzeProfessionali(QXmlStreamWriter&) const;
 
-
-//   vector<string> getInfo() const;
-//   vector<string> getTitoloDiStudio() const;
-//   vector<string> getLingue() const;
-//   vector<string> getCompetenze() const;
-//   vector<string> getEsperienzeProfessionali() const;
 };
 
 #endif // PROFILO_H

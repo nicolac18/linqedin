@@ -23,7 +23,7 @@ private:
    DatabaseLinQedIn* db;
 
 public:
-   explicit QtFinestraPrincipale(DatabaseLinQedIn, QDialog* parent= 0);
+   explicit QtFinestraPrincipale(QDialog* parent= 0);
 
    QVBoxLayout* layout;
 

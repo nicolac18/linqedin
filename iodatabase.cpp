@@ -15,65 +15,112 @@ void IODatabase::loadDatabase(string s, DatabaseLinQedIn* db) {
 
    QXmlStreamReader stream(&file);
    stream.readNext();
+
    if (stream.isStartDocument()) {
-
       stream.readNext();
-      if (stream.isStartElement()) {
-         if (stream.name()== "DatabaseLinQedIn")
 
-            while (!stream.isEndDocument()) {
+      if (stream.isStartElement() && stream.name()== "DatabaseLinQedIn") {
+         stream.readNext();
+         while (!stream.isEndDocument()) {
 
-               stream.readNextStartElement();   // utente
-               string tipo= stream.attributes().at(0).value().toString().toStdString();  // tipo
+            if (stream.isStartElement() && stream.name()== "utente") {
 
+               string tipo= stream.attributes()[0].value().toString().toStdString();  // tipo
+
+               stream.readNextStartElement();
                Profilo p; string e, n, c, es; QDate d; vector<string> r;
-               while (!stream.isEndElement()) {
-                  stream.readNext();
+               while (/*!stream.isEndElement()*/stream.name()!= "utente") {
 
-                  // profilo
-                  if (stream.name().toString().toStdString()== "email")
+                  if (stream.name()== "email") {
+                     stream.readNext();
                      e= stream.text().toString().toStdString();
-
-                  if (stream.name().toString().toStdString()== "nome")
-                     n= stream.text().toString().toStdString();
-
-                  if (stream.name().toString().toStdString()== "cognome")
-                     c= stream.text().toString().toStdString();
-
-                  if (stream.name().toString().toStdString()== "datadinascita") {
-                     QString tmp= stream.text().toString();
-                     d= QDate::fromString(tmp, "yyyy.MM.dd");
+                     stream.readNextStartElement();
                   }
 
-                  if (stream.name().toString().toStdString()== "emailsecondaria")
+                  if (stream.name().toString().toStdString()== "nome") {
+                     stream.readNext();
+                     n= stream.text().toString().toStdString();
+                     stream.readNext();
+                  }
+
+                  if (stream.name().toString().toStdString()== "cognome") {
+                     stream.readNext();
+                     c= stream.text().toString().toStdString();
+                     stream.readNext();
+                  }
+
+                  if (stream.name().toString().toStdString()== "datadinascita") {
+                     stream.readNext();
+                     QString tmp= stream.text().toString();
+                     d= QDate::fromString(tmp, "yyyy.MM.dd");
+                     stream.readNext();
+                  }
+
+                  if (stream.name().toString().toStdString()== "emailsecondaria") {
+                     stream.readNext();
                      es= stream.text().toString().toStdString();
+                     stream.readNext();
+                  }
+
 
                   // titolo di studio
-                  if (stream.name().toString().toStdString()== "titolodistudio") {
-                     stream.readNext(); string t= stream.text().toString().toStdString();
-                     stream.readNext(); string s= stream.text().toString().toStdString();
-                     p.aggiungiTitoloDiStudio (TitoloDiStudio(t, s));
+                  if (stream.name().toString().toStdString()== "titolo") {
+                     stream.readNext();
+                     string t= stream.text().toString().toStdString();
+                     stream.readNext();
+
+                     stream.readNextStartElement();
+
+                     if (stream.name().toString().toStdString()== "specializzazione") {
+                        stream.readNext();
+                        string s= stream.text().toString().toStdString();
+                        p.aggiungiTitoloDiStudio (TitoloDiStudio(t, s));
+                     }
+                     stream.readNext();
                   }
 
                   // lingua
-                  if (stream.name().toString().toStdString()== "lingua")
+                  if (stream.name().toString().toStdString()== "lingua") {
+                     stream.readNext();
                      p.aggiungiLingua(Lingua(stream.text().toString().toStdString()));
-
-                  // competenza
-                  if (stream.name().toString().toStdString()== "competenza")
-                     p.aggiungiCompetenza(Competenza(stream.text().toString().toStdString()));
-
-                  // esperienza professionale
-                  if (stream.name().toString().toStdString()== "esperienzaprofessionale") {
-                     stream.readNext(); QString dal= stream.text().toString();
-                     stream.readNext(); QString al= stream.text().toString();
-                     stream.readNext(); string exp= stream.text().toString().toStdString();
-                     p.aggiungiEsperienzaProfessionale(EsperienzaProfessionale(QDate::fromString(dal, "yyyy.MM.dd"), QDate::fromString(al, "yyyy.MM.dd"), exp));
+                     stream.readNext();
                   }
 
-                  // rete
+                  // competenza
+                  if (stream.name().toString().toStdString()== "competenza") {
+                     stream.readNext();
+                     p.aggiungiCompetenza(Competenza(stream.text().toString().toStdString()));
+                     stream.readNext();
+                  }
+
+                  // esperienza professionale
+                  if (stream.name().toString().toStdString()== "dal") {
+                     stream.readNext();
+                     QString dal= stream.text().toString();
+                     stream.readNext();
+
+                     stream.readNextStartElement();
+
+                     if (stream.name().toString().toStdString()== "al") {
+                        stream.readNext();
+                        QString al= stream.text().toString();
+                        stream.readNext();
+
+                        stream.readNextStartElement();
+
+                        if (stream.name().toString().toStdString()== "descrizione") {
+                           stream.readNext();
+                           string exp= stream.text().toString().toStdString();
+                           p.aggiungiEsperienzaProfessionale(EsperienzaProfessionale(QDate::fromString(dal, "yyyy.MM.dd"), QDate::fromString(al, "yyyy.MM.dd"), exp));
+                        }
+                     }
+                     stream.readNext();
+                  }
+
+//                  // rete
                   if (stream.name().toString().toStdString()== "contatto")
                      r.push_back(stream.text().toString().toStdString());
+                  stream.readNextStartElement();
                }
 
                IdUtente id(e);
@@ -106,10 +153,12 @@ void IODatabase::loadDatabase(string s, DatabaseLinQedIn* db) {
                }
             }
 
+         stream.readNext();
+         }
+      }
          else
             return;
       }
-   }
    file.close();
 }
 
