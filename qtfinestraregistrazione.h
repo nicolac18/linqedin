@@ -2,6 +2,7 @@
 #define QTFINESTRAREGISTRAZIONE_H
 
 #include "databaselinqedin.h"
+#include "iodatabase.h"
 #include "utenteexecutive.h"
 
 #include <QDateEdit>
@@ -14,7 +15,7 @@
 #include <QPushButton>
 #include <QString>
 
-class QtFinestraRegistrazione : public QDialog {
+class QtFinestraRegistrazione: public QDialog {
    Q_OBJECT
 
 private:

@@ -2,12 +2,20 @@
 
 EsperienzaProfessionale::EsperienzaProfessionale(QDate d, QDate a, string desc): dal(d), al(a), descrizione (desc) {}
 
-string EsperienzaProfessionale::getAl() const {
-   return al.toString("yyyy.MM.dd").toStdString();
+//string EsperienzaProfessionale::getDal() const {
+//   return dal.toString("yyyy.MM.dd").toStdString();
+//}
+
+QDate EsperienzaProfessionale::getDal() const {
+   return dal;
 }
 
-string EsperienzaProfessionale::getDal() const {
-   return dal.toString("yyyy.MM.dd").toStdString();
+//string EsperienzaProfessionale::getAl() const {
+//   return al.toString("yyyy.MM.dd").toStdString();
+//}
+
+QDate EsperienzaProfessionale::getAl() const {
+   return al;
 }
 
 string EsperienzaProfessionale::getDescrizione() const {

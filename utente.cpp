@@ -28,8 +28,8 @@ void Utente::RicercaFuntore::operator() (const Utente* u, QList<QString>& list) 
 
       for (int i= 0; i< (int)(u->profilo.getEsperienzaProfessionale().size()); ++i) {
          QString expPro= QString::fromStdString(u->profilo.getEsperienzaProfessionale(i).getDescrizione()).append( "Dal: ")
-                  .append(QString::fromStdString(u->profilo.getEsperienzaProfessionale(i).getDal())).append( "Al: ")
-                  .append(QString::fromStdString(u->profilo.getEsperienzaProfessionale(i).getAl()));
+                  .append(u->profilo.getEsperienzaProfessionale(i).getDal().toString("dd.MM.yyyy")).append( "Al: ")
+                  .append(u->profilo.getEsperienzaProfessionale(i).getAl().toString("dd.MM.yyyy"));
          list.push_back("Esperienza Professionale"+ QString(i+1)+ ": "+ expPro);
       }
       break;
@@ -53,8 +53,8 @@ void Utente::RicercaFuntore::operator() (const Utente* u, QList<QString>& list) 
 
       for (int i= 0; i< (int)(u->profilo.getEsperienzaProfessionale().size()); ++i) {
          QString expPro= QString::fromStdString(u->profilo.getEsperienzaProfessionale(i).getDescrizione()).append( "Dal: ")
-                  .append(QString::fromStdString(u->profilo.getEsperienzaProfessionale(i).getDal())).append( "Al: ")
-                  .append(QString::fromStdString(u->profilo.getEsperienzaProfessionale(i).getAl()));
+               .append(u->profilo.getEsperienzaProfessionale(i).getDal().toString("dd.MM.yyyy")).append( "Al: ")
+               .append(u->profilo.getEsperienzaProfessionale(i).getAl().toString("dd.MM.yyyy"));
          list.push_back("Esperienza Professionale"+ QString(i+1)+ ": "+ expPro);
       }
       vector<Contatto>::const_iterator it;
@@ -113,7 +113,6 @@ vector<Contatto>& Utente::getRete() const {
    return const_cast<vector<Contatto>&>(this->rete);
 }
 
-
 // metodi writer
 void Utente::scrivi(QXmlStreamWriter& stream) const {
    // scrivi tipo
@@ -132,7 +131,6 @@ void Utente::scrivi(QXmlStreamWriter& stream) const {
    profilo.scriviCompetenze(stream);
    profilo.scriviEsperienzeProfessionali(stream);
 
-   stream.writeEmptyElement("rete");
    vector<Contatto>::const_iterator it;
    for (it= rete.begin(); it!= rete.end(); ++it)
       stream.writeTextElement("contatto", QString::fromStdString((*it).getContatto()));

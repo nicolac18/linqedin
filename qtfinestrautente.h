@@ -6,6 +6,7 @@
 #include "utente.h"
 
 #include <QComboBox>
+#include <QDateEdit>
 #include <QDialog>
 #include <QGridLayout>
 #include <QGroupBox>
@@ -26,10 +27,19 @@ class QtFinestraUtente: public QDialog {
    Q_OBJECT
 
 private:
-//   DatabaseLinQedIn* db;
-//   Utente& utente;
    LinQedInUtente& lUtente;
    QStringList header;
+
+   void riempiTableTDiStudio();
+   void riempiTableLingue();
+   void riempiTableCompetenze();
+   void riempiTableExpProfessionali();
+
+   void riempiTableRete();
+
+   void aggiungiRiga();
+   void rimuoviRiga();
+
 
 public:
    explicit QtFinestraUtente(LinQedInUtente&,  QWidget* parent = 0);
@@ -58,9 +68,16 @@ public:
       QLabel* labelCognome;
       QLineEdit* lineEditCognome;
       QLabel* labelDataDiNascita;
-      QLineEdit* lineEditDataDiNascita;
+      QDateEdit* dateEditDataDiNascita;
       QLabel* labelEmailDue;
       QLineEdit* lineEditEmailDue;
+
+      // profilo
+      QGridLayout* layoutTipologia;
+      QGroupBox* gBoxTipologia;
+
+      QLabel* labelTipologia;
+      QLineEdit* lineEditTipologia;
 
       // tDiStudio
       QVBoxLayout* layoutTDiStudio;
@@ -89,11 +106,27 @@ public:
 
       // rete di contatti
       QTableWidget* tableRete;
+      QPushButton* buttonAggiungiRete;
+
+
+   // groupBox bottoni
+   QGroupBox* gBoxButton;
+   QGridLayout* layoutButton;
+
+      QPushButton* buttonSalva;
+      QPushButton* buttonAggiungi;
+      QPushButton* buttonRimuovi;
 
 
 signals:
 
+private slots:
+   void attivaSalva(QString);
+   void attivaSalva(QDate);
+
 public slots:
+   void salva();
+   void aggiungiRete();
 
 };
 

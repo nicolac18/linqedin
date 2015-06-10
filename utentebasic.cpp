@@ -12,6 +12,10 @@ void UtenteBasic::ricerca(DatabaseLinQedIn& db, string s, QList<QString>& l) {
    sf(u, l);
 }
 
+string UtenteBasic::getTipo() const {
+   return "Basic";
+}
+
 void UtenteBasic::scrivi(QXmlStreamWriter& stream) const {
    stream.writeAttribute("tipo", "basic");
    Utente::scrivi(stream);

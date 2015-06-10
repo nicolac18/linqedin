@@ -11,11 +11,12 @@ QtFinestraAmministratore::QtFinestraAmministratore(LinQedInAmministratore& a, QW
    layoutUtente= new QGridLayout();
 
 
-      // inserisci, rimuovi
+      // inserisci
       buttonInserisci= new QPushButton("Inserisci");
       layoutUtente->addWidget(buttonInserisci, 0, 0, 1, 1);
-      buttonRimuovi= new QPushButton("Rimuovi");
-      layoutUtente->addWidget(buttonRimuovi, 1, 0, 1, 1);
+
+      buttonVisualizza= new QPushButton("VisualizzaUtente");
+      layoutUtente->addWidget(buttonVisualizza, 1, 0, 1, 1);
 
 
       // toolBox
@@ -42,6 +43,9 @@ QtFinestraAmministratore::QtFinestraAmministratore(LinQedInAmministratore& a, QW
 
       buttonCerca= new QPushButton("Cerca");
       layoutCerca->addWidget(buttonCerca, 3, 0, 1, 2);
+
+      buttonReset= new QPushButton("Reset");
+      layoutCerca->addWidget(buttonReset, 4, 0, 1, 2);
 
       gBoxCerca->setLayout(layoutCerca);
 
@@ -116,8 +120,10 @@ QtFinestraAmministratore::QtFinestraAmministratore(LinQedInAmministratore& a, QW
 
 
    connect(buttonInserisci, SIGNAL(clicked()), this, SLOT(apriQtFinestraRegistrazione()));
-   connect(buttonRimuovi, SIGNAL(clicked()), this, SLOT(apriQtFinestraRimozioneUtente()));
+   connect(buttonVisualizza, SIGNAL(clicked()), this, SLOT(apriQtFinestraVisualizza()));
+   connect(buttonVisualizza, SIGNAL(clicked()), this, SLOT(apriQtFinestraVisualizza()));
    connect(buttonCerca, SIGNAL(clicked()), this, SLOT(cercaUtente()));
+   connect(buttonReset, SIGNAL(clicked()), this, SLOT(aggiornaListaS()));
    connect(buttonCambiaTipo, SIGNAL(clicked()), this, SLOT(cambiaTipoUtente()));
    connect(buttonRimuovi, SIGNAL(clicked()), this, SLOT(rimuoviUtente()));
    connect(buttonCaricaDB, SIGNAL(clicked()), this, SLOT(caricaDatabase()));
@@ -162,12 +168,27 @@ void QtFinestraAmministratore::resetCampi(int) {
 
 
 // publis slots
+// aggiorna lista
+void QtFinestraAmministratore::aggiornaListaS() {
+   resetCampi(1);
+   aggiornaLista();
+}
+
 // slot inserisci utente
 void QtFinestraAmministratore::apriQtFinestraRegistrazione() {
    QtFinestraRegistrazione finestraRegistrazione(lAmministratore.getDatabase(), this);
    finestraRegistrazione.exec();
 
    aggiornaLista();
+}
+
+// slot visualizza utente
+void QtFinestraAmministratore::apriQtFinestraVisualizza() {
+
+   LinQedInUtente utente(lAmministratore.getDatabase(), **(lAmministratore.cercaUtente((listWidget->selectedItems()[0])->text().toStdString())));
+   QtFinestraUtenteVisualizzazione finestraVisualizzazione(utente, this);
+
+   finestraVisualizzazione.exec();
 }
 
 // slot rimuovi utente
@@ -177,7 +198,6 @@ void QtFinestraAmministratore::rimuoviUtente() {
    QMessageBox messageBox(this);
    messageBox.setText("Rimozione utente da LinQedIn avvenuta con successo!");
    messageBox.exec();
-   this->close();
 
    aggiornaLista();
 }
@@ -194,7 +214,7 @@ void QtFinestraAmministratore::cercaUtente() {
    }
 
    else if (lineEditCercaNome->text()!= "" && lineEditCercaCognome->text()!= "") {
-      DatabaseLinQedIn::Iteratore it= lAmministratore.cercaUtente(lineEditCercaNome->text().toStdString(), lineEditCercaNome->text().toStdString());
+      DatabaseLinQedIn::Iteratore it= lAmministratore.cercaUtente(lineEditCercaNome->text().toStdString(), lineEditCercaCognome->text().toStdString());
       if (it!= lAmministratore.getDatabase()->end()) {
          listWidget->clear();
          listWidget->addItem(QString::fromStdString((*it)->getId()));
@@ -212,6 +232,8 @@ void QtFinestraAmministratore::caricaDatabase() {
    QString filename ("/Users/Nicola/QtCreator/LinQedIn/db.xml");
 //   QString filename= QFileDialog::getOpenFileName(this, "Apri", ".xml", "*.xml");
    IODatabase::loadDatabase(filename.toStdString(), lAmministratore.getDatabase());
+
+   aggiornaLista();
 }
 
 // slot salva database

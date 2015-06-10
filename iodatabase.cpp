@@ -118,8 +118,12 @@ void IODatabase::loadDatabase(string s, DatabaseLinQedIn* db) {
                   }
 
 //                  // rete
-                  if (stream.name().toString().toStdString()== "contatto")
+                  if (stream.name().toString().toStdString()== "contatto") {
+                     stream.readNext();
                      r.push_back(stream.text().toString().toStdString());
+                     stream.readNext();
+                  }
+
                   stream.readNextStartElement();
                }
 

@@ -64,16 +64,13 @@ void QtFinestraRegistrazione::registrazione() {
 
    bool inserito;
    if (comboBoxTipoUtente->currentIndex()== 0) {
-//      UtenteBasic tmpU(tmpI,tmpP);
       inserito= db->inserisciUtente(new UtenteBasic(tmpI, tmpP));
    }
    else if (comboBoxTipoUtente->currentIndex()== 1) {
-//      UtenteBusiness tmpU(tmpI,tmpP);
       inserito= db->inserisciUtente(new UtenteBusiness(tmpI, tmpP));
    }
 
    else if (comboBoxTipoUtente->currentIndex()== 2) {
-//      UtenteExecutive tmpU(tmpI,tmpP);
       inserito= db->inserisciUtente(new UtenteExecutive(tmpI, tmpP));
    }
 

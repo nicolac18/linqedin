@@ -50,6 +50,8 @@ public:
    Profilo& getProfilo() const;
    vector<Contatto>& getRete() const;
 
+   virtual string getTipo() const =0;
+
    // metodi writer
    virtual void scrivi(QXmlStreamWriter&) const =0;
 

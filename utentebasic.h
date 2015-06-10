@@ -14,6 +14,8 @@ public:
 
    void ricerca(DatabaseLinQedIn&, string, QList<QString>&);
 
+   string getTipo() const;
+
    void scrivi(QXmlStreamWriter&) const;
 };
 

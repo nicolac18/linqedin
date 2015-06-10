@@ -5,6 +5,7 @@
 #include "iodatabase.h"
 #include "linqedinamministratore.h"
 #include "qtfinestraregistrazione.h"
+#include "qtfinestrautentevisualizzazione.h"
 
 #include <QComboBox>
 #include <QDialog>
@@ -41,6 +42,7 @@ public:
 
       // inserisci
       QPushButton* buttonInserisci;
+      QPushButton* buttonVisualizza;
 
       QToolBox* tBox;
 
@@ -57,6 +59,7 @@ public:
       QLineEdit* lineEditCercaCognome;
 
       QPushButton* buttonCerca;
+      QPushButton* buttonReset;
 
       // cambia tipo
       QVBoxLayout* layoutCambiaTipo;
@@ -94,7 +97,10 @@ private slots:
    void resetCampi(int);
 
 public slots:
+   void aggiornaListaS();
+
    void apriQtFinestraRegistrazione();
+   void apriQtFinestraVisualizza();
 
    void cercaUtente();
    void cambiaTipoUtente();

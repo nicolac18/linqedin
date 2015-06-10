@@ -16,8 +16,10 @@ private:
 public:
    EsperienzaProfessionale(QDate, QDate, string);
 
-   string getDal() const;
-   string getAl() const;
+//   string getDal() const;
+   QDate getDal() const;
+//   string getAl() const;
+   QDate getAl() const;
    string getDescrizione() const;
 
    // metodi writer

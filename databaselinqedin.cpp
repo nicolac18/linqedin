@@ -109,7 +109,7 @@ DatabaseLinQedIn::Iteratore DatabaseLinQedIn::cercaUtente(string id) {
 DatabaseLinQedIn::Iteratore DatabaseLinQedIn::cercaUtente(string n, string c) {
    Iteratore it= this->begin();
    while (it!= this->end()) {
-      if (it.idi->info->getProfilo().getNome()== n && it.idi->info->getProfilo().getCognome()== c) {
+      if ((*it)->getProfilo().getNome()== n && (*it)->getProfilo().getCognome()== c) {
          return it;
       }
       ++it;

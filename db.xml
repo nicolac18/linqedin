@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <DatabaseLinQedIn>
-    <utente tipo="business">
-        <email>edoardo.carraro.16@gmail.com</email>
-        <nome>Edoardo</nome>
-        <cognome>Carraro</cognome>
-        <datadinascita>2001.07.16</datadinascita>
+    <utente tipo="executive">
+        <email>fabio.ros90@gmail.com</email>
+        <nome>Fabio</nome>
+        <cognome>Ros</cognome>
+        <datadinascita>2000.01.01</datadinascita>
         <emailsecondaria></emailsecondaria>
-        <rete/>
     </utente>
     <utente tipo="basic">
         <email>antolauri@alice.it</email>
@@ -14,9 +13,8 @@
         <cognome>Carraro</cognome>
         <datadinascita>1961.07.24</datadinascita>
         <emailsecondaria></emailsecondaria>
-        <rete/>
     </utente>
-    <utente tipo="basic">
+    <utente tipo="business">
         <email>nicola.carraro.18@gmail.com</email>
         <nome>Nicola</nome>
         <cognome>Carraro</cognome>
@@ -30,6 +28,13 @@
         <dal>1980.06.01</dal>
         <al>2010.09.30</al>
         <descrizione>musei civici</descrizione>
-        <rete/>
+        <contatto>edoardo.carraro.16@gmail.com</contatto>
+    </utente>
+    <utente tipo="business">
+        <email>edoardo.carraro.16@gmail.com</email>
+        <nome>Edoardo</nome>
+        <cognome>Carraro</cognome>
+        <datadinascita>2001.07.16</datadinascita>
+        <emailsecondaria></emailsecondaria>
     </utente>
 </DatabaseLinQedIn>

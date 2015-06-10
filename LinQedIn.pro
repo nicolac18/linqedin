@@ -18,7 +18,8 @@ SOURCES += \
     lingua.cpp \
     competenza.cpp \
     contatto.cpp \
-    iodatabase.cpp
+    iodatabase.cpp \
+    qtfinestrautentevisualizzazione.cpp
 
 HEADERS += \
     utente.h \
@@ -39,7 +40,8 @@ HEADERS += \
     lingua.h \
     competenza.h \
     contatto.h \
-    iodatabase.h
+    iodatabase.h \
+    qtfinestrautentevisualizzazione.h
 
 QT += \
     core \

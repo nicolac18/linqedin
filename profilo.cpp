@@ -108,7 +108,7 @@ vector<Lingua>& Profilo::getLingua() const {
 }
 
 Lingua& Profilo::getLingua(int i) const {
-   return const_cast<Lingua&>(lingue.at(i));
+   return const_cast<Lingua&>(lingue[i]);
 }
 
 vector<Competenza>& Profilo::getCompetenza() const {
@@ -116,7 +116,7 @@ vector<Competenza>& Profilo::getCompetenza() const {
 }
 
 Competenza& Profilo::getCompetenza(int i) const {
-   return const_cast<Competenza&>(competenze.at(i));
+   return const_cast<Competenza&>(competenze[i]);
 }
 
 vector<EsperienzaProfessionale>& Profilo::getEsperienzaProfessionale() const {
@@ -124,7 +124,7 @@ vector<EsperienzaProfessionale>& Profilo::getEsperienzaProfessionale() const {
 }
 
 EsperienzaProfessionale& Profilo::getEsperienzaProfessionale(int i) const {
-  return const_cast<EsperienzaProfessionale&>(expProfessionali.at(i));
+  return const_cast<EsperienzaProfessionale&>(expProfessionali[i]);
 }
 
 
