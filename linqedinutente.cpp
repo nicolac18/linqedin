@@ -46,6 +46,27 @@ void LinQedInUtente::aggiungiEsperienzaProfessionale(EsperienzaProfessionale e) 
    u.getProfilo().aggiungiEsperienzaProfessionale(e);
 }
 
+// metodi di rimozione dati
+void LinQedInUtente::rimuoviEmail() {
+   u.getProfilo().rimuoviEmailSecondaria();
+}
+
+void LinQedInUtente::rimuoviTitoloDiStudio(int i) {
+   u.getProfilo().rimuoviTitoloDiStudio(i);
+}
+
+void LinQedInUtente::rimuoviLingua(int i) {
+   u.getProfilo().rimuoviLingua(i);
+}
+
+void LinQedInUtente::rimuoviCompetenza(int i) {
+   u.getProfilo().rimuoviCompetenza(i);
+}
+
+void LinQedInUtente::rimuoviEsperienzaProfessionale(int i) {
+   u.getProfilo().rimuoviEsperienzaProfessionale(i);
+}
+
 // metodi rete di contatti
 void LinQedInUtente::aggiungiContatto(string s) {
    u.aggiungiContatto(s);
@@ -56,6 +77,13 @@ void LinQedInUtente::rimuoviContatto(string s) {
 }
 
 // metodo di ricerca
+void LinQedInUtente::cerca(string n, string c, string& id, QList<QString>& list) {
+   Utente* tmp= *(db->cercaUtente(n, c));
+   if (tmp!= 0) {
+      id= tmp->getId();
+      u.ricerca(*db, tmp->getId(), list);
+   }
+}
 
 // metodi getter
 Utente& LinQedInUtente::getUtente() const {

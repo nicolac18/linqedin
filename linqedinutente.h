@@ -1,11 +1,11 @@
 #ifndef LINQEDINUTENTE_H
 #define LINQEDINUTENTE_H
 
-#include <iostream>
-#include <QDate>
-
 #include "databaselinqedin.h"
 #include "utenteexecutive.h"
+
+#include <iostream>
+#include <QDate>
 
 using namespace std;
 
@@ -33,11 +33,19 @@ public:
    void aggiungiCompetenza(string);
    void aggiungiEsperienzaProfessionale(EsperienzaProfessionale);
 
+   // metodi di inserimento dati
+   void rimuoviEmail();
+   void rimuoviTitoloDiStudio(int);
+   void rimuoviLingua(int);
+   void rimuoviCompetenza(int);
+   void rimuoviEsperienzaProfessionale(int);
+
    // metodi rete di contatti
    void aggiungiContatto(string);
    void rimuoviContatto(string);
 
    // metodo di ricerca
+   void cerca(string, string, string&, QList<QString>&);
 
    // metodi getter
    Utente& getUtente() const;

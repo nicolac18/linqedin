@@ -1,14 +1,16 @@
 #ifndef UTENTE_H
 #define UTENTE_H
 
-#include <iostream>
-#include <QXmlStreamWriter>
-#include <vector>
-
 #include "contatto.h"
 #include "databaselinqedin.h"
 #include "idutente.h"
 #include "profilo.h"
+
+#include <iostream>
+#include <QList>
+#include <QString>
+#include <QXmlStreamWriter>
+#include <vector>
 
 using namespace std;
 

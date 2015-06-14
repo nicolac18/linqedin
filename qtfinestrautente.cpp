@@ -83,7 +83,7 @@ QtFinestraUtente::QtFinestraUtente(LinQedInUtente& u, QWidget *parent): QDialog(
       buttonSalva= new QPushButton("Salva"); buttonSalva->setEnabled(false);
       layoutInfo->addWidget(buttonSalva, 3, 0, 1, 1);
 
-      buttonCerca= new QPushButton("Cerca");
+      buttonCerca= new QPushButton("Cerca & Aggiungi");
       layoutInfo->addWidget(buttonCerca, 4, 0, 1, 1);
 
 
@@ -180,11 +180,8 @@ QtFinestraUtente::QtFinestraUtente(LinQedInUtente& u, QWidget *parent): QDialog(
       tableRete->setHorizontalHeaderLabels(header);
       layoutRete->addWidget(tableRete, 0, 0, 1, 2);
 
-      buttonAggiungiRete= new QPushButton("+");
-      layoutRete->addWidget(buttonAggiungiRete, 1, 0, 1, 1);
-
       buttonRimuoviRete= new QPushButton("-");
-      layoutRete->addWidget(buttonRimuoviRete, 1, 1, 1, 1);
+      layoutRete->addWidget(buttonRimuoviRete, 1, 0, 1, 1);
 
    gBoxRete->setLayout(layoutRete);
 
@@ -211,6 +208,7 @@ QtFinestraUtente::QtFinestraUtente(LinQedInUtente& u, QWidget *parent): QDialog(
    connect(lineEditEmailDue, SIGNAL(textChanged(QString)), this, SLOT(attivaSalva(QString)));
 
    connect(buttonSalva, SIGNAL(clicked()), this, SLOT(salva()));
+   connect(buttonCerca, SIGNAL(clicked()), this, SLOT(cerca()));
 
    connect(buttonAggiungiTDiStudio, SIGNAL(clicked()), this, SLOT(aggiungiTDiStudio()));
    connect(buttonAggiungiLingua, SIGNAL(clicked()), this, SLOT(aggiungiLingua()));
@@ -222,7 +220,6 @@ QtFinestraUtente::QtFinestraUtente(LinQedInUtente& u, QWidget *parent): QDialog(
    connect(buttonRimuoviCompetenza, SIGNAL(clicked()), this, SLOT(rimuoviCompetenza()));
    connect(buttonRimuoviExpProfessionale, SIGNAL(clicked()), this, SLOT(rimuoviExpProfessionale()));
 
-   connect(buttonAggiungiRete, SIGNAL(clicked()), this, SLOT(aggiungiRete()));
    connect(buttonRimuoviRete, SIGNAL(clicked()), this, SLOT(rimuoviRete()));
 
 }
@@ -329,6 +326,15 @@ void QtFinestraUtente::salva() {
    messageBox.exec();
 }
 
+// cerca
+void QtFinestraUtente::cerca() {
+   QtFinestraCerca finestraCerca(lUtente, this);
+   finestraCerca.exec();
+   tableRete->clearContents();
+   tableRete->setRowCount(0);
+   riempiTableRete();
+}
+
 // aggiungi titolo di studio
 void QtFinestraUtente::aggiungiTDiStudio() {
    QtFinestraTitoloDiStudio finestraTDiStudio(lUtente, this);
@@ -399,13 +405,6 @@ void QtFinestraUtente::rimuoviExpProfessionale() {
    tableExpProfessionali->clearContents();
    tableExpProfessionali->setRowCount(0);
    riempiTableExpProfessionali();
-}
-
-
-
-// aggiungi rete
-void QtFinestraUtente::aggiungiRete() {
-
 }
 
 // rimuovi rete

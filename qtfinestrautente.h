@@ -2,6 +2,7 @@
 #define QTFINESTRAUTENTE_H
 
 #include "linqedinutente.h"
+#include "qtfinestracerca.h"
 #include "qtfinestracompetenza.h"
 #include "qtfinestraesperienzaprofessionale.h"
 #include "qtfinestralingua.h"
@@ -39,10 +40,6 @@ private:
    void riempiTableExpProfessionali();
 
    void riempiTableRete();
-
-//   void aggiungiRiga();
-//   void rimuoviRiga();
-
 
 public:
    explicit QtFinestraUtente(LinQedInUtente&,  QWidget* parent = 0);
@@ -117,7 +114,6 @@ public:
 
       // rete di contatti
       QTableWidget* tableRete;
-      QPushButton* buttonAggiungiRete;
       QPushButton* buttonRimuoviRete;
 
 
@@ -134,6 +130,7 @@ private slots:
 
 public slots:
    void salva();
+   void cerca();
 
    void aggiungiTDiStudio();
    void rimuoviTDiStudio();
@@ -147,7 +144,6 @@ public slots:
    void aggiungiExpProfessionale();
    void rimuoviExpProfessionale();
 
-   void aggiungiRete();
    void rimuoviRete();
 
 };
