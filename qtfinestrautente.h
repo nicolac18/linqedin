@@ -1,8 +1,11 @@
 #ifndef QTFINESTRAUTENTE_H
 #define QTFINESTRAUTENTE_H
 
-//#include "databaselinqedin.h"
 #include "linqedinutente.h"
+#include "qtfinestracompetenza.h"
+#include "qtfinestraesperienzaprofessionale.h"
+#include "qtfinestralingua.h"
+#include "qtfinestratitolodistudio.h"
 #include "utente.h"
 
 #include <QComboBox>
@@ -14,13 +17,13 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QLineEdit>
+#include <QMessageBox>
 #include <QPushButton>
 #include <QString>
 #include <QTableWidget>
 #include <QTableWidgetItem>
 #include <QTextBrowser>
 #include <QToolBox>
-#include <QVBoxLayout>
 
 
 class QtFinestraUtente: public QDialog {
@@ -37,8 +40,8 @@ private:
 
    void riempiTableRete();
 
-   void aggiungiRiga();
-   void rimuoviRiga();
+//   void aggiungiRiga();
+//   void rimuoviRiga();
 
 
 public:
@@ -80,33 +83,42 @@ public:
       QLineEdit* lineEditTipologia;
 
       // tDiStudio
-      QVBoxLayout* layoutTDiStudio;
+      QGridLayout* layoutTDiStudio;
       QGroupBox* gBoxTDiStudio;
       QTableWidget* tableTDiStudio;
+      QPushButton* buttonAggiungiTDiStudio;
+      QPushButton* buttonRimuoviTDiStudio;
 
       // lingue
-      QVBoxLayout* layoutLingue;
+      QGridLayout* layoutLingue;
       QGroupBox* gBoxLingue;
       QTableWidget* tableLingue;
+      QPushButton* buttonAggiungiLingua;
+      QPushButton* buttonRimuoviLingua;
 
       // competenze
-      QVBoxLayout* layoutCompetenze;
+      QGridLayout* layoutCompetenze;
       QGroupBox* gBoxCompetenze;
       QTableWidget* tableCompetenze;
+      QPushButton* buttonAggiungiCompetenza;
+      QPushButton* buttonRimuoviCompetenza;
 
       // esperienze professionali
-      QVBoxLayout* layoutExpProfessionali;
+      QGridLayout* layoutExpProfessionali;
       QGroupBox* gBoxExpProfessionali;
       QTableWidget* tableExpProfessionali;
+      QPushButton* buttonAggiungiExpProfessionale;
+      QPushButton* buttonRimuoviExpProfessionale;
 
 
    // groupBox rete di contatti
    QGroupBox* gBoxRete;
-   QVBoxLayout* layoutRete;
+   QGridLayout* layoutRete;
 
       // rete di contatti
       QTableWidget* tableRete;
       QPushButton* buttonAggiungiRete;
+      QPushButton* buttonRimuoviRete;
 
 
    // groupBox bottoni
@@ -114,11 +126,7 @@ public:
    QGridLayout* layoutButton;
 
       QPushButton* buttonSalva;
-      QPushButton* buttonAggiungi;
-      QPushButton* buttonRimuovi;
-
-
-signals:
+      QPushButton* buttonCerca;
 
 private slots:
    void attivaSalva(QString);
@@ -126,7 +134,21 @@ private slots:
 
 public slots:
    void salva();
+
+   void aggiungiTDiStudio();
+   void rimuoviTDiStudio();
+
+   void aggiungiLingua();
+   void rimuoviLingua();
+
+   void aggiungiCompetenza();
+   void rimuoviCompetenza();
+
+   void aggiungiExpProfessionale();
+   void rimuoviExpProfessionale();
+
    void aggiungiRete();
+   void rimuoviRete();
 
 };
 

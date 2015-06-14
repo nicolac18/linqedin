@@ -19,7 +19,12 @@ SOURCES += \
     competenza.cpp \
     contatto.cpp \
     iodatabase.cpp \
-    qtfinestrautentevisualizzazione.cpp
+    qtfinestrautentevisualizzazione.cpp \
+    qtfinestratitolodistudio.cpp \
+    qtfinestralingua.cpp \
+    qtfinestracompetenza.cpp \
+    qtfinestraesperienzaprofessionale.cpp \
+    qtfinestracerca.cpp
 
 HEADERS += \
     utente.h \
@@ -41,7 +46,12 @@ HEADERS += \
     competenza.h \
     contatto.h \
     iodatabase.h \
-    qtfinestrautentevisualizzazione.h
+    qtfinestrautentevisualizzazione.h \
+    qtfinestratitolodistudio.h \
+    qtfinestralingua.h \
+    qtfinestracompetenza.h \
+    qtfinestraesperienzaprofessionale.h \
+    qtfinestracerca.h
 
 QT += \
     core \

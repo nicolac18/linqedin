@@ -82,21 +82,25 @@ QtFinestraUtente::QtFinestraUtente(LinQedInUtente& u, QWidget *parent): QDialog(
 
       buttonSalva= new QPushButton("Salva"); buttonSalva->setEnabled(false);
       layoutInfo->addWidget(buttonSalva, 3, 0, 1, 1);
-      buttonAggiungi= new QPushButton("+");
-      layoutInfo->addWidget(buttonAggiungi, 4, 0, 1, 1);
-      buttonRimuovi= new QPushButton("-");
-      layoutInfo->addWidget(buttonRimuovi, 4, 1, 1, 1);
+
+      buttonCerca= new QPushButton("Cerca");
+      layoutInfo->addWidget(buttonCerca, 4, 0, 1, 1);
 
 
       // tDiStudio
       gBoxTDiStudio= new QGroupBox(QString("Titoli di studio"), this);
-      layoutTDiStudio= new QVBoxLayout();
+      layoutTDiStudio= new QGridLayout();
 
       tableTDiStudio= new QTableWidget(0, 2);
       tableTDiStudio->setMinimumWidth(150);
       header= QStringList()<<"Titolo"<< "Specializzazione";
       tableTDiStudio->setHorizontalHeaderLabels(header);
-      layoutTDiStudio->addWidget(tableTDiStudio);
+      layoutTDiStudio->addWidget(tableTDiStudio, 0, 0, 1, 3);
+
+      buttonAggiungiTDiStudio= new QPushButton("+");
+      layoutTDiStudio->addWidget(buttonAggiungiTDiStudio, 1, 0, 1, 1);
+      buttonRimuoviTDiStudio= new QPushButton("-");
+      layoutTDiStudio->addWidget(buttonRimuoviTDiStudio, 1, 1, 1, 1);
 
       gBoxTDiStudio->setLayout(layoutTDiStudio);
 
@@ -105,12 +109,17 @@ QtFinestraUtente::QtFinestraUtente(LinQedInUtente& u, QWidget *parent): QDialog(
 
       // lingue
       gBoxLingue= new QGroupBox(QString("Lingue"), this);
-      layoutLingue= new QVBoxLayout();
+      layoutLingue= new QGridLayout();
 
       tableLingue= new QTableWidget(0, 1);
       header= QStringList()<<"Lingua";
       tableLingue->setHorizontalHeaderLabels(header);
-      layoutLingue->addWidget(tableLingue);
+      layoutLingue->addWidget(tableLingue, 0, 0, 1, 3);
+
+      buttonAggiungiLingua= new QPushButton("+");
+      layoutLingue->addWidget(buttonAggiungiLingua, 1, 0, 1, 1);
+      buttonRimuoviLingua= new QPushButton("-");
+      layoutLingue->addWidget(buttonRimuoviLingua, 1, 1, 1, 1);
 
       gBoxLingue->setLayout(layoutLingue);
 
@@ -119,12 +128,17 @@ QtFinestraUtente::QtFinestraUtente(LinQedInUtente& u, QWidget *parent): QDialog(
 
       // competenze
       gBoxCompetenze= new QGroupBox(QString("Competenze"), this);
-      layoutCompetenze= new QVBoxLayout();
+      layoutCompetenze= new QGridLayout();
 
       tableCompetenze= new QTableWidget(0, 1);
       header= QStringList()<<"Competenza";
       tableCompetenze->setHorizontalHeaderLabels(header);
-      layoutCompetenze->addWidget(tableCompetenze);
+      layoutCompetenze->addWidget(tableCompetenze, 0, 0, 1, 3);
+
+      buttonAggiungiCompetenza= new QPushButton("+");
+      layoutCompetenze->addWidget(buttonAggiungiCompetenza, 1, 0, 1, 1);
+      buttonRimuoviCompetenza= new QPushButton("-");
+      layoutCompetenze->addWidget(buttonRimuoviCompetenza, 1, 1, 1, 1);
 
       gBoxCompetenze->setLayout(layoutCompetenze);
 
@@ -133,12 +147,17 @@ QtFinestraUtente::QtFinestraUtente(LinQedInUtente& u, QWidget *parent): QDialog(
 
       // esperienze professionali
       gBoxExpProfessionali= new QGroupBox(QString("Esperienze professionali"), this);
-      layoutExpProfessionali= new QVBoxLayout;
+      layoutExpProfessionali= new QGridLayout();
 
       tableExpProfessionali= new QTableWidget(0, 3);
       header= QStringList()<<"Dal"<< "Al"<< "Descrizione";
       tableExpProfessionali->setHorizontalHeaderLabels(header);
-      layoutExpProfessionali->addWidget(tableExpProfessionali);
+      layoutExpProfessionali->addWidget(tableExpProfessionali, 0, 0, 1, 3);
+
+      buttonAggiungiExpProfessionale= new QPushButton("+");
+      layoutExpProfessionali->addWidget(buttonAggiungiExpProfessionale, 1, 0, 1, 1);
+      buttonRimuoviExpProfessionale= new QPushButton("-");
+      layoutExpProfessionali->addWidget(buttonRimuoviExpProfessionale, 1, 1, 1, 1);
 
       gBoxExpProfessionali->setLayout(layoutExpProfessionali);
 
@@ -151,7 +170,7 @@ QtFinestraUtente::QtFinestraUtente(LinQedInUtente& u, QWidget *parent): QDialog(
 
    // groupBox rete di contatti
    gBoxRete= new QGroupBox(QString("Rete di contatti"), this);
-   layoutRete= new QVBoxLayout();
+   layoutRete= new QGridLayout();
 
       // rete di contatti
       tableRete= new QTableWidget(0, 1);
@@ -159,10 +178,13 @@ QtFinestraUtente::QtFinestraUtente(LinQedInUtente& u, QWidget *parent): QDialog(
       tableRete->setColumnWidth(0, 200);
       header= QStringList()<<"IdUtente";
       tableRete->setHorizontalHeaderLabels(header);
-      layoutRete->addWidget(tableRete);
+      layoutRete->addWidget(tableRete, 0, 0, 1, 2);
 
-      buttonAggiungiRete= new QPushButton("Aggiungi");
-      layoutRete->addWidget(buttonAggiungiRete);
+      buttonAggiungiRete= new QPushButton("+");
+      layoutRete->addWidget(buttonAggiungiRete, 1, 0, 1, 1);
+
+      buttonRimuoviRete= new QPushButton("-");
+      layoutRete->addWidget(buttonRimuoviRete, 1, 1, 1, 1);
 
    gBoxRete->setLayout(layoutRete);
 
@@ -173,6 +195,7 @@ QtFinestraUtente::QtFinestraUtente(LinQedInUtente& u, QWidget *parent): QDialog(
    layout->setStretch(0, 1);
 
    this->setLayout(layout);
+
 
    riempiTableTDiStudio();
    riempiTableLingue();
@@ -188,12 +211,25 @@ QtFinestraUtente::QtFinestraUtente(LinQedInUtente& u, QWidget *parent): QDialog(
    connect(lineEditEmailDue, SIGNAL(textChanged(QString)), this, SLOT(attivaSalva(QString)));
 
    connect(buttonSalva, SIGNAL(clicked()), this, SLOT(salva()));
+
+   connect(buttonAggiungiTDiStudio, SIGNAL(clicked()), this, SLOT(aggiungiTDiStudio()));
+   connect(buttonAggiungiLingua, SIGNAL(clicked()), this, SLOT(aggiungiLingua()));
+   connect(buttonAggiungiCompetenza, SIGNAL(clicked()), this, SLOT(aggiungiCompetenza()));
+   connect(buttonAggiungiExpProfessionale, SIGNAL(clicked()), this, SLOT(aggiungiExpProfessionale()));
+
+   connect(buttonRimuoviTDiStudio, SIGNAL(clicked()), this, SLOT(rimuoviTDiStudio()));
+   connect(buttonRimuoviLingua, SIGNAL(clicked()), this, SLOT(rimuoviLingua()));
+   connect(buttonRimuoviCompetenza, SIGNAL(clicked()), this, SLOT(rimuoviCompetenza()));
+   connect(buttonRimuoviExpProfessionale, SIGNAL(clicked()), this, SLOT(rimuoviExpProfessionale()));
+
    connect(buttonAggiungiRete, SIGNAL(clicked()), this, SLOT(aggiungiRete()));
+   connect(buttonRimuoviRete, SIGNAL(clicked()), this, SLOT(rimuoviRete()));
 
 }
 
 
 // metodi privati
+// riempi tabella titolo di studio
 void QtFinestraUtente::riempiTableTDiStudio() {
    int row= tableTDiStudio->rowCount();
    for (unsigned int i= 0; i<lUtente.getUtente().getProfilo().getTitoloDiStudio().size(); ++i) {
@@ -209,6 +245,7 @@ void QtFinestraUtente::riempiTableTDiStudio() {
    }
 }
 
+// riempi tabella lingue
 void QtFinestraUtente::riempiTableLingue() {
    int row= tableLingue->rowCount();
    for (unsigned int i= 0; i<lUtente.getUtente().getProfilo().getLingua().size(); ++i) {
@@ -221,6 +258,7 @@ void QtFinestraUtente::riempiTableLingue() {
    }
 }
 
+// riempi tabella competenze
 void QtFinestraUtente::riempiTableCompetenze() {
    int row= tableCompetenze->rowCount();
    for (unsigned int i= 0; i<lUtente.getUtente().getProfilo().getCompetenza().size(); ++i) {
@@ -233,6 +271,7 @@ void QtFinestraUtente::riempiTableCompetenze() {
    }
 }
 
+// riempi tabella esperienze professionali
 void QtFinestraUtente::riempiTableExpProfessionali() {
    int row= tableExpProfessionali->rowCount();
    for (unsigned int i= 0; i<lUtente.getUtente().getProfilo().getEsperienzaProfessionale().size(); ++i) {
@@ -251,7 +290,7 @@ void QtFinestraUtente::riempiTableExpProfessionali() {
    }
 }
 
-
+// riempi tabella rete
 void QtFinestraUtente::riempiTableRete() {
    int row= 0;
    vector<Contatto> tmp= lUtente.getUtente().getRete();
@@ -262,14 +301,6 @@ void QtFinestraUtente::riempiTableRete() {
       QTableWidgetItem* item= new QTableWidgetItem (QString::fromStdString(tmp[i].getContatto()));
       tableRete->setItem(row, 0, item);
    }
-}
-
-void QtFinestraUtente::aggiungiRiga() {
-   if (tableTDiStudio->isItemSelected())
-}
-
-void QtFinestraUtente::rimuoviRiga() {
-
 }
 
 
@@ -292,9 +323,96 @@ void QtFinestraUtente::salva() {
    lUtente.modificaCognome(lineEditCognome->text().toStdString());
    lUtente.modificaDataDiNascita(dateEditDataDiNascita->date());
    lUtente.modificaEmailSecondaria(lineEditEmailDue->text().toStdString());
+
+   QMessageBox messageBox(this);
+   messageBox.setText("Modifiche salvate con successo");
+   messageBox.exec();
 }
+
+// aggiungi titolo di studio
+void QtFinestraUtente::aggiungiTDiStudio() {
+   QtFinestraTitoloDiStudio finestraTDiStudio(lUtente, this);
+   finestraTDiStudio.exec();
+   tableTDiStudio->clearContents();
+   tableTDiStudio->setRowCount(0);
+   riempiTableTDiStudio();
+}
+
+// aggiungi lingua
+void QtFinestraUtente::aggiungiLingua() {
+   QtFinestraLingua finestraLingua(lUtente, this);
+   finestraLingua.exec();
+   tableLingue->clearContents();
+   tableLingue->setRowCount(0);
+   riempiTableLingue();
+}
+
+// aggiungi competenza
+void QtFinestraUtente::aggiungiCompetenza() {
+   QtFinestraCompetenza finestraCompetenza (lUtente, this);
+   finestraCompetenza.exec();
+   tableCompetenze->clearContents();
+   tableCompetenze->setRowCount(0);
+   riempiTableCompetenze();
+}
+
+// aggiungi esperienza professionale
+void QtFinestraUtente::aggiungiExpProfessionale() {
+   QtFinestraEsperienzaProfessionale finestraExpProfessionale (lUtente, this);
+   finestraExpProfessionale.exec();
+   tableExpProfessionali->clearContents();
+   tableExpProfessionali->setRowCount(0);
+   riempiTableExpProfessionali();
+}
+
+// rimuovi titolo di studio
+void QtFinestraUtente::rimuoviTDiStudio() {
+   if (tableTDiStudio->currentItem()!= 0)
+      lUtente.rimuoviTitoloDiStudio(tableTDiStudio->currentRow());
+   tableTDiStudio->clearContents();
+   tableTDiStudio->setRowCount(0);
+   riempiTableTDiStudio();
+}
+
+// rimuovi lingua
+void QtFinestraUtente::rimuoviLingua() {
+   if (tableLingue->currentItem()!= 0)
+      lUtente.rimuoviLingua(tableLingue->currentRow());
+   tableLingue->clearContents();
+   tableLingue->setRowCount(0);
+   riempiTableLingue();
+}
+
+// rimuovi competenza
+void QtFinestraUtente::rimuoviCompetenza() {
+   if (tableCompetenze->currentItem()!= 0)
+      lUtente.rimuoviCompetenza(tableCompetenze->currentRow());
+   tableCompetenze->clearContents();
+   tableCompetenze->setRowCount(0);
+   riempiTableCompetenze();
+}
+
+// rimuovi esperienza professionale
+void QtFinestraUtente::rimuoviExpProfessionale() {
+   if (tableExpProfessionali->currentItem()!= 0)
+      lUtente.rimuoviEsperienzaProfessionale(tableExpProfessionali->currentRow());
+   tableExpProfessionali->clearContents();
+   tableExpProfessionali->setRowCount(0);
+   riempiTableExpProfessionali();
+}
+
+
 
 // aggiungi rete
 void QtFinestraUtente::aggiungiRete() {
 
+}
+
+// rimuovi rete
+void QtFinestraUtente::rimuoviRete() {
+   if (tableRete->currentItem()!= 0)
+      lUtente.rimuoviContatto(tableRete->currentItem()->text().toStdString());
+   tableRete->clearContents();
+   tableRete->setRowCount(0);
+   riempiTableRete();
 }

@@ -45,8 +45,6 @@ public:
 
    QPushButton* buttonEsci;
 
-signals:
-
 public slots:
    void registrazione();
    void esci();
