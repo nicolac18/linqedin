@@ -4,7 +4,6 @@ LinQedInAmministratore::LinQedInAmministratore(DatabaseLinQedIn* d): db(d) {}
 
 LinQedInAmministratore::~LinQedInAmministratore() {}
 
-
 // inserisci utente
 void LinQedInAmministratore::inserisciUtente(int tipo, string email, string nome, string cognome, QDate data) {
 
@@ -76,7 +75,6 @@ void LinQedInAmministratore::cambiaTipoUtente(string e, int tipo) {
    }
    return;
 }
-
 
 // metodi getter
 DatabaseLinQedIn* LinQedInAmministratore::getDatabase() const {

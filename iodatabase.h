@@ -1,18 +1,15 @@
 #ifndef IODATABASE_H
 #define IODATABASE_H
 
+#include "databaselinqedin.h"
+#include "utenteexecutive.h"
+
 #include <iostream>
 #include <QFile>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 
-#include "databaselinqedin.h"
-#include "utenteexecutive.h"
-//#include "utente.h"
-
 using namespace std;
-
-//class DatabaseLinQedIn;
 
 class IODatabase {
 private:

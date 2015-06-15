@@ -2,32 +2,32 @@
 
 QtFinestraRegistrazione::QtFinestraRegistrazione(DatabaseLinQedIn* d, QDialog *parent): QDialog(parent), db(d) {
 
-   this->setWindowTitle(QString("LinQedIn Registrazione"));
+   this->setWindowTitle("LinQedIn Registrazione");
 
    layout= new QGridLayout(this);
 
-   labelEmail= new QLabel(QString("Email:"),this);
+   labelEmail= new QLabel("Email:",this);
    lineEditEmail= new QLineEdit(this);
 
-   labelNome= new QLabel(QString("Nome:"),this);
+   labelNome= new QLabel("Nome:",this);
    lineEditNome= new QLineEdit(this);
 
-   labelCognome= new QLabel(QString("Cognome:"),this);
+   labelCognome= new QLabel("Cognome:",this);
    lineEditCognome= new QLineEdit(this);
 
-   labelDataDiNascita= new QLabel(QString("Data di nascita:"),this);
+   labelDataDiNascita= new QLabel("Data di nascita:",this);
    dateEditDataDiNascita= new QDateEdit(this);
    dateEditDataDiNascita->setDisplayFormat("dd.MM.yyyy");
    dateEditDataDiNascita->setMinimumDate(QDate(1,1,1900)); dateEditDataDiNascita->setMaximumDate(QDate(1,1,2015));
 
-   labelTipoUtente= new QLabel(QString("Tipo utente:"),this);
+   labelTipoUtente= new QLabel("Tipo utente:",this);
    comboBoxTipoUtente= new QComboBox(this);
    QStringList list= (QStringList()<< "Utente Basic"<< "Utente Business"<< "Utente Executive");
    comboBoxTipoUtente->addItems(list);
 
-   buttonRegistrati= new QPushButton(QString("Registrati"), this);
+   buttonRegistrati= new QPushButton("Registrati", this);
 
-   buttonEsci= new QPushButton(QString("Indietro"), this);
+   buttonEsci= new QPushButton("Indietro", this);
 
    layout->addWidget(labelEmail, 1, 0);
    layout->addWidget(lineEditEmail, 1, 1);

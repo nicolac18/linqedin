@@ -12,7 +12,6 @@ string TitoloDiStudio::getSpecializzazione() const {
    return specializzazione;
 }
 
-
 // metodi writer
 void TitoloDiStudio::scrivi(QXmlStreamWriter& stream) const {
    stream.writeTextElement("titolo", "info");

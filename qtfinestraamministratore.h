@@ -12,7 +12,6 @@
 #include <QGridLayout>
 #include <QGroupBox>
 #include <QFileDialog>
-//#include <QHBoxLayout>
 #include <QLabel>
 #include <QListWidget>
 #include <QLineEdit>
@@ -20,7 +19,6 @@
 #include <QPushButton>
 #include <QString>
 #include <QStringList>
-//#include <QTextBrowser>
 #include <QToolBox>
 #include <QVBoxLayout>
 
@@ -88,9 +86,6 @@ public:
       // bottoni database
       QPushButton* buttonCaricaDB;
       QPushButton* buttonSalvaDB;
-
-
-signals:
 
 private slots:
    void inserisciID(QListWidgetItem*);

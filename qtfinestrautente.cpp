@@ -2,26 +2,26 @@
 
 QtFinestraUtente::QtFinestraUtente(LinQedInUtente& u, QWidget *parent): QDialog(parent), lUtente(u) {
 
-   this->setWindowTitle(QString("LinQedIn Utente"));
+   this->setWindowTitle("LinQedIn Utente");
    this->setMinimumSize(800, 700);
 
    layout= new QHBoxLayout(this);
 
    // groupBox info
-   gBoxInfo= new QGroupBox(QString("Informazioni"), this);
+   gBoxInfo= new QGroupBox("Informazioni", this);
    layoutInfo= new QGridLayout();
 
       // idUtente
-      gBoxIdUtente= new QGroupBox(QString("Id Utente"), this);
+      gBoxIdUtente= new QGroupBox("Id Utente", this);
       layoutIdUtente= new QGridLayout();
 
-      labelIdUtente= new QLabel(QString("IdUtente (email):"));
+      labelIdUtente= new QLabel("IdUtente (email):");
       layoutIdUtente->addWidget(labelIdUtente, 0, 0, 1, 1);
       lineEditIdUtente= new QLineEdit(QString::fromStdString(lUtente.getUtente().getId()));
       lineEditIdUtente->setMinimumWidth(150);
       layoutIdUtente->addWidget(lineEditIdUtente, 0, 1, 1, 1);
 
-      labelPassword= new QLabel(QString("Password:"));
+      labelPassword= new QLabel("Password:");
       layoutIdUtente->addWidget(labelPassword, 1, 0, 1, 1);
       lineEditPassword= new QLineEdit(); lineEditPassword->setDisabled(true);
       layoutIdUtente->addWidget(lineEditPassword, 1, 1, 1, 1);
@@ -32,21 +32,21 @@ QtFinestraUtente::QtFinestraUtente(LinQedInUtente& u, QWidget *parent): QDialog(
 
 
       // profilo
-      gBoxProfilo= new QGroupBox(QString("Profilo"), this);
+      gBoxProfilo= new QGroupBox("Profilo", this);
       layoutProfilo= new QGridLayout();
 
-      labelNome= new QLabel(QString("Nome:"));
+      labelNome= new QLabel("Nome:");
       layoutProfilo->addWidget(labelNome, 0, 0, 1, 1);
       lineEditNome= new QLineEdit(QString::fromStdString(lUtente.getUtente().getProfilo().getNome()));
          lineEditIdUtente->home(true); lineEditIdUtente->setReadOnly(true);
       layoutProfilo->addWidget(lineEditNome, 0, 1, 1, 1);
 
-      labelCognome= new QLabel(QString("Cognome:"));
+      labelCognome= new QLabel("Cognome:");
       layoutProfilo->addWidget(labelCognome, 1, 0, 1, 1);
       lineEditCognome= new QLineEdit(QString::fromStdString(lUtente.getUtente().getProfilo().getCognome()));
       layoutProfilo->addWidget(lineEditCognome, 1, 1, 1, 1);
 
-      labelDataDiNascita= new QLabel(QString("Data di nascita:"));
+      labelDataDiNascita= new QLabel("Data di nascita:");
       layoutProfilo->addWidget(labelDataDiNascita, 2, 0, 1, 1);
       dateEditDataDiNascita= new QDateEdit(this);
       dateEditDataDiNascita->setDisplayFormat("dd.MM.yyyy");
@@ -54,7 +54,7 @@ QtFinestraUtente::QtFinestraUtente(LinQedInUtente& u, QWidget *parent): QDialog(
       dateEditDataDiNascita->setDate(lUtente.getUtente().getProfilo().getDataDiNascita());
       layoutProfilo->addWidget(dateEditDataDiNascita, 2, 1, 1, 1);
 
-      labelEmailDue= new QLabel(QString("Email secondaria:"));
+      labelEmailDue= new QLabel("Email secondaria:");
       layoutProfilo->addWidget(labelEmailDue, 3, 0, 1, 1);
       lineEditEmailDue= new QLineEdit(QString::fromStdString(lUtente.getUtente().getProfilo().getEmailSecondaria()));
       layoutProfilo->addWidget(lineEditEmailDue, 3, 1, 1, 1);
@@ -65,10 +65,10 @@ QtFinestraUtente::QtFinestraUtente(LinQedInUtente& u, QWidget *parent): QDialog(
 
 
       // tipologia
-      gBoxTipologia= new QGroupBox(QString("Tipologia"), this);
+      gBoxTipologia= new QGroupBox("Tipologia", this);
       layoutTipologia= new QGridLayout();
 
-      labelTipologia= new QLabel(QString("Tipologia:"));
+      labelTipologia= new QLabel("Tipologia:");
       layoutTipologia->addWidget(labelTipologia, 0, 0, 1, 1);
 
       lineEditTipologia= new QLineEdit(QString::fromStdString(lUtente.getUtente().getTipo())); lineEditTipologia->setReadOnly(true);
@@ -83,12 +83,12 @@ QtFinestraUtente::QtFinestraUtente(LinQedInUtente& u, QWidget *parent): QDialog(
       buttonSalva= new QPushButton("Salva"); buttonSalva->setEnabled(false);
       layoutInfo->addWidget(buttonSalva, 3, 0, 1, 1);
 
-      buttonCerca= new QPushButton("Cerca & Aggiungi");
+      buttonCerca= new QPushButton("Cerca / Aggiungi");
       layoutInfo->addWidget(buttonCerca, 4, 0, 1, 1);
 
 
       // tDiStudio
-      gBoxTDiStudio= new QGroupBox(QString("Titoli di studio"), this);
+      gBoxTDiStudio= new QGroupBox("Titoli di studio", this);
       layoutTDiStudio= new QGridLayout();
 
       tableTDiStudio= new QTableWidget(0, 2);
@@ -108,7 +108,7 @@ QtFinestraUtente::QtFinestraUtente(LinQedInUtente& u, QWidget *parent): QDialog(
 
 
       // lingue
-      gBoxLingue= new QGroupBox(QString("Lingue"), this);
+      gBoxLingue= new QGroupBox("Lingue", this);
       layoutLingue= new QGridLayout();
 
       tableLingue= new QTableWidget(0, 1);
@@ -127,7 +127,7 @@ QtFinestraUtente::QtFinestraUtente(LinQedInUtente& u, QWidget *parent): QDialog(
 
 
       // competenze
-      gBoxCompetenze= new QGroupBox(QString("Competenze"), this);
+      gBoxCompetenze= new QGroupBox("Competenze", this);
       layoutCompetenze= new QGridLayout();
 
       tableCompetenze= new QTableWidget(0, 1);
@@ -146,7 +146,7 @@ QtFinestraUtente::QtFinestraUtente(LinQedInUtente& u, QWidget *parent): QDialog(
 
 
       // esperienze professionali
-      gBoxExpProfessionali= new QGroupBox(QString("Esperienze professionali"), this);
+      gBoxExpProfessionali= new QGroupBox("Esperienze professionali", this);
       layoutExpProfessionali= new QGridLayout();
 
       tableExpProfessionali= new QTableWidget(0, 3);
@@ -169,7 +169,7 @@ QtFinestraUtente::QtFinestraUtente(LinQedInUtente& u, QWidget *parent): QDialog(
 
 
    // groupBox rete di contatti
-   gBoxRete= new QGroupBox(QString("Rete di contatti"), this);
+   gBoxRete= new QGroupBox("Rete di contatti", this);
    layoutRete= new QGridLayout();
 
       // rete di contatti

@@ -2,7 +2,7 @@
 
 QtFinestraCerca::QtFinestraCerca(LinQedInUtente& u, QWidget *parent): QDialog(parent), lUtente(u) {
 
-   this->setWindowTitle(QString("LinQedIn Cerca"));
+   this->setWindowTitle("LinQedIn Cerca");
 
    layout= new QGridLayout(this);
 
@@ -47,6 +47,7 @@ void QtFinestraCerca::riempiTextBrowser() {
 }
 
 // public slots
+// aggiungi
 void QtFinestraCerca::aggiungi() {
    lUtente.aggiungiContatto(id);
    QMessageBox messageBox(this);

@@ -13,6 +13,7 @@ private:
 public:
    Lingua(string);
 
+   // metodi getter
    string getLingua() const;
 
    // metodi writer

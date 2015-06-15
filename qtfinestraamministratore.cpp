@@ -167,7 +167,7 @@ void QtFinestraAmministratore::resetCampi(int) {
 }
 
 
-// publis slots
+// publics slots
 // aggiorna lista
 void QtFinestraAmministratore::aggiornaListaS() {
    resetCampi(1);
@@ -229,8 +229,7 @@ void QtFinestraAmministratore::cambiaTipoUtente() {
 
 // slot carica database
 void QtFinestraAmministratore::caricaDatabase() {
-   QString filename ("/Users/Nicola/QtCreator/LinQedIn/db.xml");
-//   QString filename= QFileDialog::getOpenFileName(this, "Apri", ".xml", "*.xml");
+   QString filename= QFileDialog::getOpenFileName(this, "Apri", ".xml", "*.xml");
    IODatabase::loadDatabase(filename.toStdString(), lAmministratore.getDatabase());
 
    aggiornaLista();
@@ -238,7 +237,6 @@ void QtFinestraAmministratore::caricaDatabase() {
 
 // slot salva database
 void QtFinestraAmministratore::salvaDatabase() {
-   QString filename ("/Users/Nicola/Desktop/db.xml");
-//   QString filename= QFileDialog::getSaveFileName(this, "Salva", ".xml", "*.xml");
+   QString filename= QFileDialog::getSaveFileName(this, "Salva", "", "*.xml");
    IODatabase::saveDatabase(lAmministratore.getDatabase(), filename.toStdString());
 }

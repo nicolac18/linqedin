@@ -46,8 +46,6 @@ public slots:
    void cerca();
    void esci();
 
-private slots:
-
 };
 
 #endif // QTFINESTRACERCA_H

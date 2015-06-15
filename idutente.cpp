@@ -14,6 +14,7 @@ void IdUtente::modificaEmail(string s) {
    email= s;
 }
 
+// metodi getter
 string IdUtente::getEmail() const {
    return email;
 }

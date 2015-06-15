@@ -15,6 +15,7 @@ public:
    TitoloDiStudio(string, string);
    ~TitoloDiStudio();
 
+   // metodi getter
    string getTitolo() const;
    string getSpecializzazione() const;
 

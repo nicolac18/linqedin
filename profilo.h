@@ -1,15 +1,15 @@
 #ifndef PROFILO_H
 #define PROFILO_H
 
-#include <iostream>
-#include <QDate>
-#include <vector>
-#include <QXmlStreamWriter>
-
 #include "competenza.h"
 #include "esperienzaprofessionale.h"
 #include "lingua.h"
 #include "titolodistudio.h"
+
+#include <iostream>
+#include <QDate>
+#include <vector>
+#include <QXmlStreamWriter>
 
 using namespace std;
 

@@ -1,10 +1,10 @@
 #ifndef UTENTEBASIC_H
 #define UTENTEBASIC_H
 
+#include "utente.h"
+
 #include <iostream>
 #include <QXmlStreamWriter>
-
-#include "utente.h"
 
 class UtenteBasic: public Utente {
 public:
@@ -14,8 +14,10 @@ public:
 
    void ricerca(DatabaseLinQedIn&, string, QList<QString>&);
 
+   // metodi getter
    string getTipo() const;
 
+   // metodi writer
    void scrivi(QXmlStreamWriter&) const;
 };
 

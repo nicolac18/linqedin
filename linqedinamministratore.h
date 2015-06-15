@@ -1,11 +1,11 @@
 #ifndef LINQEDINAMMINISTRATORE_H
 #define LINQEDINAMMINISTRATORE_H
 
-#include <iostream>
-#include <QDate>
-
 #include "databaselinqedin.h"
 #include "utenteexecutive.h"
+
+#include <iostream>
+#include <QDate>
 
 using namespace std;
 
@@ -26,6 +26,7 @@ public:
 
    void cambiaTipoUtente(string, int);
 
+   // metodi getter
    DatabaseLinQedIn* getDatabase() const;
 
 };

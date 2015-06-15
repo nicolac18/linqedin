@@ -10,8 +10,10 @@ public:
 
    void ricerca(DatabaseLinQedIn&, string, QList<QString>&);
 
+   // metodi getter
    string getTipo() const;
 
+   // metodi writer
    void scrivi(QXmlStreamWriter&) const;
 };
 

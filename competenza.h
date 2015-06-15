@@ -13,6 +13,7 @@ private:
 public:
    Competenza(string);
 
+   // metodi getter
    string getCompetenza() const;
 
    // metodi writer

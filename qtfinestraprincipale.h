@@ -44,8 +44,6 @@ public:
 
    QPushButton* buttonEsci;
 
-signals:
-
 public slots:
    void apriQtFinestraUtente();
    void apriQtFinestraAmministratore();

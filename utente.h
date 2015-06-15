@@ -35,7 +35,7 @@ protected:
 
 public:
    Utente(IdUtente&, Profilo&);
-//   Utente(const Utente&);
+
    virtual ~Utente();
 
    bool operator==(const Utente&) const;

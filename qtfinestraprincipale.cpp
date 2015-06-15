@@ -3,20 +3,20 @@
 QtFinestraPrincipale::QtFinestraPrincipale(QDialog* parent): QDialog(parent) {
    db= new DatabaseLinQedIn();
 
-   this->setWindowTitle(QString("LinQedIn"));
+   this->setWindowTitle("LinQedIn");
    this->setMinimumSize(320, 240);
 
    layout= new QVBoxLayout(this);
 
-   labelTitolo= new QLabel(QString("Benvenuto in LinQedIn!"));
+   labelTitolo= new QLabel("Benvenuto in LinQedIn!");
 
    lineEditNomeUtente= new QLineEdit(this);
-   lineEditNomeUtente->setPlaceholderText(QString("inserisci nome utente o email"));
-   buttonAccedi= new QPushButton(QString("Accedi"), this);
+   lineEditNomeUtente->setPlaceholderText("inserisci nome utente o email");
+   buttonAccedi= new QPushButton("Accedi", this);
 
-   buttonRegistrati= new QPushButton(QString("Registrati"), this);
+   buttonRegistrati= new QPushButton("Registrati", this);
 
-   buttonAmministratore= new QPushButton(QString("Accedi"), this);
+   buttonAmministratore= new QPushButton("Accedi", this);
 
 
    layoutUtente= new QVBoxLayout();   
@@ -26,18 +26,17 @@ QtFinestraPrincipale::QtFinestraPrincipale(QDialog* parent): QDialog(parent) {
    layoutUtente->addSpacing(20);
    layoutUtente->addWidget(buttonRegistrati);
 
-   gBoxUtente= new QGroupBox(QString("Utente"), this);
+   gBoxUtente= new QGroupBox("Utente", this);
    gBoxUtente->setLayout(layoutUtente);
 
 
    layoutAmministratore= new QVBoxLayout();
    layoutAmministratore->addWidget(buttonAmministratore);
 
-   gBoxAmministratore= new QGroupBox(QString("Amministratore"), this);
+   gBoxAmministratore= new QGroupBox("Amministratore", this);
    gBoxAmministratore->setLayout(layoutAmministratore);
 
-   buttonEsci= new QPushButton(QString("Esci"), this);
-//   buttonEsci->setDefault(true);
+   buttonEsci= new QPushButton("Esci", this);
 
    layout->addWidget(labelTitolo);
    layout->addSpacing(20);

@@ -12,7 +12,6 @@
 #include <QListWidget>
 #include <QLineEdit>
 #include <QString>
-//#include <QTextBrowser>
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
 
@@ -72,11 +71,6 @@ public:
 
       // rete di contatti
       QListWidget* textRete;
-
-signals:
-
-public slots:
-
 };
 
 #endif // QTFINESTRAUTENTEVISUALIZZAZIONE_H

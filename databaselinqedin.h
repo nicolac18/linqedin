@@ -1,17 +1,16 @@
 #ifndef DATABASELINQEDIN_H
 #define DATABASELINQEDIN_H
 
-#include <iostream>
-
-//#include "iodatabase.h"
 #include "utente.h"
+
+#include <iostream>
 
 using namespace std;
 
 class Utente;
 
 class DatabaseLinQedIn {
-      friend class Iteratore;// friend class IODatabase;
+      friend class Iteratore;
 private:
    class DatabaseItem;
 
@@ -74,8 +73,6 @@ public:
    bool rimuoviUtente(string);
    Iteratore cercaUtente(string);
    Iteratore cercaUtente(string, string);
-
-   // stampa
 };
 
 #endif // DATABASELINQEDIN_H

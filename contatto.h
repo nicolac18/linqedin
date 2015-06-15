@@ -13,6 +13,7 @@ public:
    Contatto(string);
    ~Contatto();
 
+   // metodi getter
    string getContatto() const;
 };
 

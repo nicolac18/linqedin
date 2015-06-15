@@ -2,17 +2,10 @@
 
 EsperienzaProfessionale::EsperienzaProfessionale(QDate d, QDate a, string desc): dal(d), al(a), descrizione (desc) {}
 
-//string EsperienzaProfessionale::getDal() const {
-//   return dal.toString("yyyy.MM.dd").toStdString();
-//}
-
+// metodi getter
 QDate EsperienzaProfessionale::getDal() const {
    return dal;
 }
-
-//string EsperienzaProfessionale::getAl() const {
-//   return al.toString("yyyy.MM.dd").toStdString();
-//}
 
 QDate EsperienzaProfessionale::getAl() const {
    return al;
@@ -21,7 +14,6 @@ QDate EsperienzaProfessionale::getAl() const {
 string EsperienzaProfessionale::getDescrizione() const {
    return descrizione;
 }
-
 
 // metodi writer
 void EsperienzaProfessionale::scrivi(QXmlStreamWriter& stream) const {

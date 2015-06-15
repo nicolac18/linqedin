@@ -20,6 +20,7 @@ public:
 
    void modificaEmail(string);
 
+   // metodi getter
    string getEmail() const;
 };
 

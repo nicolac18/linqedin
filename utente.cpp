@@ -9,13 +9,14 @@ void Utente::RicercaFuntore::operator() (const Utente* u, QList<QString>& list) 
       list.push_back("Cognome: "+ QString::fromStdString(u->profilo.getCognome()));
       list.push_back("Anno di Nascita: "+ u->profilo.getDataDiNascita().toString("dd.MM.yyyy"));
       break;
+
    case 2:
       list.push_back("Nome: "+ QString::fromStdString(u->profilo.getNome()));
       list.push_back("Cognome: "+ QString::fromStdString(u->profilo.getCognome()));
       list.push_back("Anno di Nascita: "+ u->profilo.getDataDiNascita().toString("dd.MM.yyyy"));
 
       for (int i= 0; i< (int)(u->profilo.getTitoloDiStudio().size()); ++i) {
-         QString tDiStudio= QString::fromStdString(u->profilo.getTitoloDiStudio(i).getTitolo()).append( "- Specializzazione: ")
+         QString tDiStudio= QString::fromStdString(u->profilo.getTitoloDiStudio(i).getTitolo()).append( ", Specializzazione: ")
                   .append(QString::fromStdString(u->profilo.getTitoloDiStudio(i).getSpecializzazione()));
          list.push_back("Titolo di studio"+ QString(i+1)+ ": "+ tDiStudio);
       }
@@ -28,9 +29,9 @@ void Utente::RicercaFuntore::operator() (const Utente* u, QList<QString>& list) 
 
       for (int i= 0; i< (int)(u->profilo.getEsperienzaProfessionale().size()); ++i) {
          QString expPro= QString::fromStdString(u->profilo.getEsperienzaProfessionale(i).getDescrizione()).append( "Dal: ")
-                  .append(u->profilo.getEsperienzaProfessionale(i).getDal().toString("dd.MM.yyyy")).append( "- Al: ")
+                  .append(u->profilo.getEsperienzaProfessionale(i).getDal().toString("dd.MM.yyyy")).append( ", Al: ")
                   .append(u->profilo.getEsperienzaProfessionale(i).getAl().toString("dd.MM.yyyy"));
-         list.push_back("- Esperienza Professionale"+ QString(i+1)+ ": "+ expPro);
+         list.push_back("Esperienza Professionale"+ QString(i+1)+ ": "+ expPro);
       }
       break;
 
@@ -40,7 +41,7 @@ void Utente::RicercaFuntore::operator() (const Utente* u, QList<QString>& list) 
       list.push_back("Anno di Nascita: "+ u->profilo.getDataDiNascita().toString("dd.MM.yyyy"));
 
       for (int i= 0; i< (int)(u->profilo.getTitoloDiStudio().size()); ++i) {
-         QString tDiStudio= QString::fromStdString(u->profilo.getTitoloDiStudio(i).getTitolo()).append( "- Specializzazione: ")
+         QString tDiStudio= QString::fromStdString(u->profilo.getTitoloDiStudio(i).getTitolo()).append( ", Specializzazione: ")
                   .append(QString::fromStdString(u->profilo.getTitoloDiStudio(i).getSpecializzazione()));
          list.push_back("Titolo di studio"+ QString(i+1)+ ": "+ tDiStudio);
       }
@@ -53,9 +54,9 @@ void Utente::RicercaFuntore::operator() (const Utente* u, QList<QString>& list) 
 
       for (int i= 0; i< (int)(u->profilo.getEsperienzaProfessionale().size()); ++i) {
          QString expPro= QString::fromStdString(u->profilo.getEsperienzaProfessionale(i).getDescrizione()).append( "Dal: ")
-               .append(u->profilo.getEsperienzaProfessionale(i).getDal().toString("dd.MM.yyyy")).append( "- Al: ")
+               .append(u->profilo.getEsperienzaProfessionale(i).getDal().toString("dd.MM.yyyy")).append( ", Al: ")
                .append(u->profilo.getEsperienzaProfessionale(i).getAl().toString("dd.MM.yyyy"));
-         list.push_back("- Esperienza Professionale"+ QString(i+1)+ ": "+ expPro);
+         list.push_back("Esperienza Professionale"+ QString(i+1)+ ": "+ expPro);
       }
       vector<Contatto>::const_iterator it;
       for (it= u->rete.begin(); it!= u->rete.end(); ++it)

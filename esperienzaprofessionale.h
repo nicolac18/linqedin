@@ -16,9 +16,8 @@ private:
 public:
    EsperienzaProfessionale(QDate, QDate, string);
 
-//   string getDal() const;
+   // metodi getter
    QDate getDal() const;
-//   string getAl() const;
    QDate getAl() const;
    string getDescrizione() const;
 
